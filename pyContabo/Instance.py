@@ -1,13 +1,10 @@
 from .util import makeRequest, statusCheck
-from .errors import NotFound
 from .Snapshots import Snapshots
-
-import json
 
 
 class Instance:
 
-    def __init__(self, json, contabo):
+    def __init__(self, json, access_token):
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -29,14 +26,14 @@ class Instance:
         self.productType = json["productType"]
 
         self.rawJson = json
-        self.contabo = contabo
-        self.Snapshots = Snapshots(contabo, self.instanceId)
+        self.access_token = access_token
+        self.Snapshots = Snapshots(access_token, self.instanceId)
 
     def start(self):
 
         status = makeRequest(type="post",
                            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start",
-                           access_token=self.contabo.access_token).status_code
+                           access_token=self.access_token).status_code
 
         statusCheck(status)
         if status == 201:
@@ -47,7 +44,7 @@ class Instance:
 
         status = makeRequest(type="post",
                            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop",
-                           access_token=self.contabo.access_token).status_code
+                           access_token=self.access_token).status_code
 
         statusCheck(status)
         if status == 201:
@@ -58,7 +55,7 @@ class Instance:
 
         status = makeRequest(type="post",
                            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start",
-                           access_token=self.contabo.access_token).status_code
+                           access_token=self.access_token).status_code
 
         statusCheck(status)
         if status == 201:

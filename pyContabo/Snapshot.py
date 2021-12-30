@@ -3,7 +3,7 @@ from .util import makeRequest, statusCheck
 
 class Snapshot:
 
-    def __init__(self, json, contabo):
+    def __init__(self, json, access_token):
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -17,13 +17,13 @@ class Snapshot:
         self.imageName = json["imageName"]
 
         self.rawJson = json
-        self.contabo = contabo
+        self.access_token = access_token
 
     def update(self, name: str, desc: str):
 
         status = makeRequest(type="patch",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
-                             access_token=self.contabo.access_token).status_code
+                             access_token=self.access_token).status_code
 
         statusCheck(status)
         if status == 200:
@@ -34,7 +34,7 @@ class Snapshot:
 
         status = makeRequest(type="delete",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
-                             access_token=self.contabo.access_token).status_code
+                             access_token=self.access_token).status_code
 
         statusCheck(status)
         if status == 204:
@@ -45,7 +45,7 @@ class Snapshot:
 
         status = makeRequest(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback",
-                             access_token=self.contabo.access_token).status_code
+                             access_token=self.access_token).status_code
 
         statusCheck(status)
         if status == 200:
