@@ -5,12 +5,15 @@ This wrapper is incomplete.
 The following api funtions have been implemented:
 - List instances
 - Get specific instance by id
+- Create instance
 - Instance Actions
-- List snapshots
+- List snapshots (The Server-side is currently broken)
 - Create a new instance snapshot
-- Retrieve a specific snapshot by id
-- Delete existing snapshot by id
-- Rollback the instance to a specific snapshot by id
+- Retrieve a specific snapshot by id* (can't test because snapshot list isn't working)
+- update existing snapshot*
+- Delete existing snapshot*
+- Rollback the instance to a specific snapshot* 
 
-The API for snapshots is currently broken. All of the snapshot function are therefore untested.
-All the naming is similar to the documentation provided by Contabo. 
+*(can't test because snapshot list isn't working).
+
+Currently, I'm working on Instance and Snapshot Audits to complete the Compute Instances part of the wrapper. 
