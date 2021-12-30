@@ -23,8 +23,12 @@ def makeRequest(type, url, access_token, data=None): # Might implement getToken 
         return requests.get(url, headers=headers)
 
     elif type == "post":
-        headers["Content-Length"] = "0"
-        return requests.post(url, headers=headers, data=data)
+        # headers["Content-Length"] = "0"
+        headers["Content-Type"] = "application/json"
+        if data:
+            return requests.post(url, headers=headers, data=data)
+        else:
+            return requests.post(url, headers=headers)
 
     elif type == "delete":
         headers["Content-Type"] = "application/json"
@@ -37,6 +41,7 @@ def makeRequest(type, url, access_token, data=None): # Might implement getToken 
 def statusCheck(status):
     """replacement for a bunch of resp.status_code everywhere"""
 
+    print(status)
     if status == 401:
         raise BadAuth()
     if status == 409:
@@ -45,5 +50,3 @@ def statusCheck(status):
         raise RateLimitReached()
     elif status == 500:
         raise ServerError()
-
-

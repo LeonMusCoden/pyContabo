@@ -29,14 +29,16 @@ class Instances:
             return Instance(resp.json()["data"][0], self.access_token)  # TODO: Create Instance using JSON
 
         else:
+            url=f"https://api.contabo.com/v1/compute/instances?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderByFields}:{orderBy}&' if orderByFields is not None else ''}{f'name={name}&' if name is not None else ''}{f'region={region}&' if region is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'status={status}&' if status is not None else ''}"
+            url = url[:-1]
             resp = makeRequest(type="get",
-                               url=f"https://api.contabo.com/v1/compute/instances?page={page}&size={pageSize}&orderBy={orderByFields}:{orderBy}&name={name}&region={region}&instanceId={instanceId}&status={status}",
+                               url=url,
                                access_token=self.access_token)
 
             statusCheck(resp.status_code)
             data = resp.json()["data"]
             if len(data) == 0:
-                raise NotFound("Instance", locals())
+                raise NotFound("Instance")
 
             instances = []
             for i in resp.json()["data"]:

@@ -40,18 +40,9 @@ class ServerError(Exception):
 
 class NotFound(Exception):
     """Exception raised for empty data response.
-    No Instance was found for query
+    No Instance was found for get()
     """
 
-    def __init__(self, type, parameters, message="No result for query"):
-        self.type = type
-        self.parameters = parameters
-        self.message = message
+    def __init__(self, type, message=""):
+        self.message = f"No result for {type} query"
         super().__init__(self.message)
-
-    def __str__(self):
-        params = ""
-        for key in self.parameters:
-            if self.parameters[key] is not None:
-                params += f"{key}={self.parameters[key]},"
-        return f"{self.message}: {self.type} -> {params[:-1]}"
