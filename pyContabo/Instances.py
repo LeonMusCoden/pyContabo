@@ -45,18 +45,21 @@ class Instances:
                 instances.append(Instance(i, self.access_token))  # TODO: Create Instance using JSON
             return instances
 
-    def create(self, imageId: str, productId: product, region: region, period: int, sshKeys: List[int] = None,
-               rootPassword: str = None, userData: str = None, licenseName: license = None):
+    def create(self, imageId: str, productId: product, region: region, period: int, sshKeys: List[int] = [],
+               rootPassword: str = "", userData: str = "", licenseName: license = None):
 
         resp = makeRequest(type="post",
                            url="https://api.contabo.com/v1/compute/instances",
                            access_token=self.access_token,
                            data=json.dumps(
                                {"imageId": imageId, "productId": productId, "region": region, "sshKeys": sshKeys,
-                                "rootPassword": rootPassword, "userData": userData, "license": license,
+                                "rootPassword": rootPassword, "userData": userData, "license": licenseName,
                                 "period": period}))
 
         statusCheck(resp.status_code)
+        print(resp.json())
 
         # TODO: Return InstanceAudit object
-        return resp.json()["data"][0]
+        if resp.status_code == 201:
+            return True
+        return False

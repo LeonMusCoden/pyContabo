@@ -11,7 +11,7 @@ class Snapshots:
         self.access_token = access_token
         self.instanceId = instanceId
 
-    def get(self, id=None, page=None, pageSize=None, orderByFields=None, orderBy=None, name=None):
+    def get(self, id: str=None, page: int=None, pageSize: int=None, orderByFields: str=None, orderBy: str=None, name: str=None):
 
         if id:
             resp = makeRequest(type="get",
@@ -41,15 +41,22 @@ class Snapshots:
                 snapshots.append(Snapshot(i, self.access_token))  # TODO: Create Snapshot using JSON
             return snapshots
 
-    def create(self, name: str, description: str = ""):
+    def create(self, name: str, description: str = None):
+
+        if description:
+            data = json.dumps({"name": name, "description": description})
+        else:
+            data = json.dumps({"name": name})
 
         resp = makeRequest(type="post",
                            url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots",
                            access_token=self.access_token,
-                           data=json.dumps({"name": name, "description": description}))
+                           data=data)
 
         statusCheck(resp.status_code)
         print(resp.json())
 
         # TODO: Return SnapshotAudit object
-        return resp.json()["data"][0]
+        if resp.status_code == 201:
+            return True
+        return False
