@@ -1,4 +1,4 @@
-
+from .Instances import Instances
 
 
 class computeMagement:
@@ -6,4 +6,4 @@ class computeMagement:
     def __init__(self, access_token):
 
         self.access_token = access_token
-        self.Instances = None
+        self.Instances = Instances(self)
