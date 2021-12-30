@@ -1,18 +1,12 @@
 import json
-from typing import List
-
-from .Instance import Instance
 from .errors import NotFound
-from .types.licenses import license
-from .types.products import product
-from .types.regions import region
 from .util import makeRequest, statusCheck
 from .Snapshot import Snapshot
 
 
 class Snapshots:
 
-    def __init__(self, access_token, instanceId):
+    def __init__(self, access_token: str, instanceId: int):
 
         self.access_token = access_token
         self.instanceId = instanceId

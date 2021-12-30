@@ -27,7 +27,7 @@ class Instance:
 
         self.rawJson = json
         self.access_token = access_token
-        self.Snapshots = Snapshots(access_token, self.instanceId)
+        self.Snapshots = Snapshots(access_token, json["instanceId"])
 
     def start(self):
 
