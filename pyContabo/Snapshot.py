@@ -3,7 +3,7 @@ from .util import makeRequest, statusCheck
 
 class Snapshot:
 
-    def __init__(self, json, access_token):
+    def __init__(self, json, ):
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -17,13 +17,12 @@ class Snapshot:
         self.imageName = json["imageName"]
 
         self.rawJson = json
-        self.access_token = access_token
 
     def update(self, name: str, desc: str):
+        """updates name and description of a snapshot"""
 
         status = makeRequest(type="patch",
-                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
-                             access_token=self.access_token).status_code
+                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}").status_code
 
         statusCheck(status)
         if status == 200:
@@ -31,10 +30,10 @@ class Snapshot:
         return False
 
     def delete(self):
+        """deletes a snapshot"""
 
         status = makeRequest(type="delete",
-                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
-                             access_token=self.access_token).status_code
+                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}").status_code
 
         statusCheck(status)
         if status == 204:
@@ -42,10 +41,10 @@ class Snapshot:
         return False
 
     def rollback(self):
+        """rollbacks the instance to a snapshot"""
 
         status = makeRequest(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback",
-                             access_token=self.access_token).status_code
+                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback").status_code
 
         statusCheck(status)
         if status == 200:

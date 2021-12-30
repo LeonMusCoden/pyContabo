@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class product(Enum):
     P4 = "P4"
     P3 = "P3"

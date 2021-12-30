@@ -1,10 +1,10 @@
-from .util import makeRequest, statusCheck
 from .Snapshots import Snapshots
+from .util import makeRequest, statusCheck
 
 
 class Instance:
 
-    def __init__(self, json, access_token):
+    def __init__(self, json):
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -26,14 +26,13 @@ class Instance:
         self.productType = json["productType"]
 
         self.rawJson = json
-        self.access_token = access_token
-        self.Snapshots = Snapshots(access_token, json["instanceId"])
+        self.Snapshots = Snapshots(json["instanceId"])
 
     def start(self):
+        """starts the instance"""
 
         status = makeRequest(type="post",
-                           url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start",
-                           access_token=self.access_token).status_code
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
 
         statusCheck(status)
         if status == 201:
@@ -41,10 +40,10 @@ class Instance:
         return False
 
     def stop(self):
+        """stops the instance"""
 
         status = makeRequest(type="post",
-                           url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop",
-                           access_token=self.access_token).status_code
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop").status_code
 
         statusCheck(status)
         if status == 201:
@@ -52,10 +51,11 @@ class Instance:
         return False
 
     def restart(self):
+        """restarts the instance
+        (technically, it's the same as start)"""
 
         status = makeRequest(type="post",
-                           url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start",
-                           access_token=self.access_token).status_code
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
 
         statusCheck(status)
         if status == 201:

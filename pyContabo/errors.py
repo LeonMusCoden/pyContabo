@@ -1,5 +1,3 @@
-
-
 class BadAuth(Exception):
     """Exception raised for 401 respond code.
     Auth did not succeed or auth token expired
@@ -19,6 +17,7 @@ class ConflictingRessources(Exception):
         self.message = message
         super().__init__(self.message)
 
+
 class RateLimitReached(Exception):
     """Exception raised for 429 respond code.
     Rate-limit reached. Please wait for some time before doing more requests.
@@ -27,6 +26,7 @@ class RateLimitReached(Exception):
     def __init__(self, message="Rate-limit reached"):
         self.message = message
         super().__init__(self.message)
+
 
 class ServerError(Exception):
     """Exception raised for 500 respond code.
