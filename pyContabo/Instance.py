@@ -1,3 +1,6 @@
+import json
+from typing import List
+
 from .Snapshots import Snapshots
 from .util import makeRequest, statusCheck
 
@@ -59,5 +62,28 @@ class Instance:
 
         statusCheck(status)
         if status == 201:
+            return True
+        return False
+
+    def reinstall(self, imageId: str, sshKeys: List[int] = None, rootPassword: int = None, userData: str = None):
+
+        status = makeRequest(type="patch",
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}",
+                             data=json.dumps(
+                                 {"imageId": imageId, "sshKeys": sshKeys, "rootPassword": rootPassword,
+                                  "userData": userData})).status_code
+
+        statusCheck(status)
+        if status == 200:
+            return True
+        return False
+
+    def cancel(self):
+
+        status = makeRequest(type="post",
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel").status_code
+
+        statusCheck(status)
+        if status == 200:
             return True
         return False

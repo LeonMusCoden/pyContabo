@@ -1,13 +1,15 @@
-from .util import makeRequest, statusCheck
 from .errors import NotFound
 from .types.Audit import InstanceActionsAudit
+from .util import makeRequest, statusCheck
+
 
 class InstanceActionsAudits:
 
     def __init__(self):
         pass
 
-    def get(self, page=None, pageSize=None, orderByField=None, orderBy=None, instanceId=None, requestId=None, changedBy=None):
+    def get(self, page=None, pageSize=None, orderByField=None, orderBy=None, instanceId=None, requestId=None,
+            changedBy=None):
         """gets audits history through the paging system"""
 
         url = f"https://api.contabo.com/v1/compute/instances/actions/audits?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderByField}:{orderBy}&' if orderByField is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'requestId={requestId}&' if requestId is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'changedBy={changedBy}&' if changedBy is not None else ''}"

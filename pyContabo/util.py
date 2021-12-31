@@ -4,8 +4,9 @@ from random import randint
 import requests
 from requests.structures import CaseInsensitiveDict
 
-from .errors import *
 from . import auth
+from .errors import *
+
 
 def makeRequest(type, url, data=None):  # Might implement getToken here, I don't know
     """Makes the API request except for getToken()"""

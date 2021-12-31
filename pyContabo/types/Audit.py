@@ -1,6 +1,4 @@
-
-
-class Audit: # Class for the different sub classes
+class Audit:  # Class for the different sub classes
 
     def __init__(self, json):
         self.id = json["id"]
@@ -12,7 +10,7 @@ class Audit: # Class for the different sub classes
         self.username = json["username"]
         self.requestId = json["requestId"]
         self.traceId = json["traceId"]
-        try: # Because some Audits don't have changes
+        try:  # Because some Audits don't have changes
             self.previous = json["changes"]["prev"]
             self.new = json["changes"]["new"]
         except KeyError:
@@ -78,4 +76,3 @@ class SecretsAudit(Audit):
     def __init__(self, json):
         super().__init__(json)
         self.secretId = json["secretId"]
-
