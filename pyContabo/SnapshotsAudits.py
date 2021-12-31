@@ -21,7 +21,7 @@ class SnapshotsAudits:
         if resp.status_code == 200:
             data = resp.json()["data"]
             if len(data) == 0:
-                raise NotFound("InstanceActionsAudits")
+                raise NotFound("SnapshotsAudits")
 
             audits = []
             for i in resp.json()["data"]:

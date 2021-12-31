@@ -19,6 +19,13 @@ class Audit:  # Class for the different sub classes
         self.rawJson = json
 
 
+class InstancesAudit(Audit):
+
+    def __init__(self, json):
+        super().__init__(json)
+        self.instanceId = json["instanceId"]
+
+
 class InstanceActionsAudit(Audit):
 
     def __init__(self, json):

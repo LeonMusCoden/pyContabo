@@ -2,6 +2,7 @@ import json
 from typing import List
 
 from .Instance import Instance
+from .InstancesAudits import InstancesAudits
 from .errors import NotFound
 from .types.licenses import license
 from .types.products import product
@@ -13,7 +14,7 @@ class Instances:
 
     def __init__(self):
 
-        pass
+        self.Audits = InstancesAudits()
 
     def get(self, id=None, page=None, pageSize=None, orderByFields=None, orderBy=None, name=None, region=None,
             instanceId=None, status=None):

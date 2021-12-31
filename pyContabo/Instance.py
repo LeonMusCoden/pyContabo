@@ -1,6 +1,7 @@
 import json
 from typing import List
 
+from .InstanceActionsAudits import InstanceActionsAudits
 from .Snapshots import Snapshots
 from .util import makeRequest, statusCheck
 
@@ -30,6 +31,7 @@ class Instance:
 
         self.rawJson = json
         self.Snapshots = Snapshots(json["instanceId"])
+        self.Audits = InstanceActionsAudits()
 
     def start(self):
         """starts the instance"""

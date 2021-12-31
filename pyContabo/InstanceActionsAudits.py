@@ -25,7 +25,7 @@ class InstanceActionsAudits:
 
             audits = []
             for i in resp.json()["data"]:
-                audits.append(InstanceActionsAudit(i))  # TODO: Create InstanceAuditActions using JSON
+                audits.append(InstanceActionsAudit(i))
             return audits
         else:
             return False
