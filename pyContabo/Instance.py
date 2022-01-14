@@ -8,7 +8,9 @@ from .util import makeRequest, statusCheck
 
 class Instance:
 
-    def __init__(self, json):
+    def __init__(self, json, _http):
+
+        self._http = _http
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -30,13 +32,13 @@ class Instance:
         self.productType = json["productType"]
 
         self.rawJson = json
-        self.Snapshots = Snapshots(json["instanceId"])
+        self.Snapshots = Snapshots(json["instanceId"], _http)
         self.Audits = InstanceActionsAudits()
 
     def start(self):
         """starts the instance"""
 
-        status = makeRequest(type="post",
+        status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
 
         statusCheck(status)
@@ -47,7 +49,7 @@ class Instance:
     def stop(self):
         """stops the instance"""
 
-        status = makeRequest(type="post",
+        status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop").status_code
 
         statusCheck(status)
@@ -59,7 +61,7 @@ class Instance:
         """restarts the instance
         (technically, it's the same as start)"""
 
-        status = makeRequest(type="post",
+        status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
 
         statusCheck(status)
@@ -69,11 +71,10 @@ class Instance:
 
     def reinstall(self, imageId: str, sshKeys: List[int] = None, rootPassword: int = None, userData: str = None):
 
-        status = makeRequest(type="patch",
+        status = self._http.request(type="patch",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}",
-                             data=json.dumps(
-                                 {"imageId": imageId, "sshKeys": sshKeys, "rootPassword": rootPassword,
-                                  "userData": userData})).status_code
+                             data={"imageId": imageId, "sshKeys": sshKeys, "rootPassword": rootPassword,
+                                  "userData": userData}).status_code
 
         statusCheck(status)
         if status == 200:
@@ -82,7 +83,7 @@ class Instance:
 
     def cancel(self):
 
-        status = makeRequest(type="post",
+        status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel").status_code
 
         statusCheck(status)

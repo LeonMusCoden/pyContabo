@@ -5,8 +5,8 @@ from .util import makeRequest, statusCheck
 
 class InstancesAudits:
 
-    def __init__(self):
-        pass
+    def __init__(self, _http):
+        self._http = _http
 
     def get(self, page=None, pageSize=None, orderByField=None, orderBy=None, instanceId=None, requestId=None,
             changedBy=None):
@@ -14,7 +14,7 @@ class InstancesAudits:
 
         url = f"https://api.contabo.com/v1/compute/instances/audits?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderByField}:{orderBy}&' if orderByField is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'requestId={requestId}&' if requestId is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'changedBy={changedBy}&' if changedBy is not None else ''}"
         url = url[:-1]
-        resp = makeRequest(type="get",
+        resp = self._http.request(type="get",
                            url=url)
 
         statusCheck(resp.status_code)

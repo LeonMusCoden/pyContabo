@@ -23,5 +23,5 @@ print(instance.Snapshots.Audits.get()[0].rawJson)
 - [ ] Secrets, Secrets Audits
 - [ ] Logging
 - [ ] Documentation
-- [ ] Better API key management (auto renewel and maybe get rid of global variables)
+- [X] Better API key management (auto renewel and maybe get rid of global variables)
 

@@ -13,7 +13,7 @@ class Audit:  # Class for the different sub classes
         try:  # Because some Audits don't have changes
             self.previous = json["changes"]["prev"]
             self.new = json["changes"]["new"]
-        except KeyError:
+        except (KeyError, TypeError):
             pass
 
         self.rawJson = json

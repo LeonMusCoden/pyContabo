@@ -3,7 +3,9 @@ from .util import makeRequest, statusCheck
 
 class Snapshot:
 
-    def __init__(self, json, ):
+    def __init__(self, json, _http):
+
+        self._http = _http
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -22,11 +24,11 @@ class Snapshot:
         """updates name and description of a snapshot"""
 
         if description:
-            resp = makeRequest(type="patch",
+            resp = self._http.request(type="patch",
                                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
                                data={"name": name, "description": description})
         else:
-            resp = makeRequest(type="patch",
+            resp = self._http.request(type="patch",
                                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
                                data={"name": name, "description": description})
 
@@ -38,7 +40,7 @@ class Snapshot:
     def delete(self):
         """deletes a snapshot"""
 
-        resp = makeRequest(type="delete",
+        resp = self._http.request(type="delete",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}")
 
         statusCheck(resp.status_code)
@@ -49,7 +51,7 @@ class Snapshot:
     def rollback(self):
         """rollbacks the instance to a snapshot"""
 
-        resp = makeRequest(type="post",
+        resp = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback")
 
         statusCheck(resp.status_code)
