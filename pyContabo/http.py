@@ -4,7 +4,7 @@ from time import time
 from uuid import uuid4
 from random import randint
 
-from .errors import BadAuth
+from .errors import *
 
 class APIClient:
 
@@ -59,6 +59,16 @@ class APIClient:
             headers["Content-Type"] = "application/json"
 
         if data:
-            return requests.request(type.capitalize(), url, headers=headers, data=data)
-        return requests.request(type.capitalize(), url, headers=headers)
+            resp = requests.request(type.capitalize(), url, headers=headers, data=data)
+        resp = requests.request(type.capitalize(), url, headers=headers)
+
+        status = resp.status_code
+        if status == 409:
+            raise ConflictingRessources()
+        elif status == 429:
+            raise RateLimitReached()
+        elif status == 500:
+            raise ServerError()
+        else:
+            return resp
 

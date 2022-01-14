@@ -1,6 +1,5 @@
 from .errors import NotFound
 from .types.Audit import InstanceActionsAudit
-from .util import makeRequest, statusCheck
 
 
 class InstanceActionsAudits:
@@ -17,7 +16,6 @@ class InstanceActionsAudits:
         resp = makeRequest(type="get",
                            url=url)
 
-        statusCheck(resp.status_code)
         if resp.status_code != 200:
             data = resp.json()["data"]
             if len(data) == 0:

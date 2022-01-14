@@ -1,4 +1,3 @@
-from . import auth
 from .Instances import Instances
 from .http import APIClient
 

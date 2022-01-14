@@ -1,6 +1,5 @@
 from .errors import NotFound
 from .types.Audit import SnapshotsAudit
-from .util import makeRequest, statusCheck
 
 
 class SnapshotsAudits:
@@ -17,7 +16,6 @@ class SnapshotsAudits:
         resp = self._http.request(type="get",
                            url=url)
 
-        statusCheck(resp.status_code)
         if resp.status_code == 200:
             data = resp.json()["data"]
             if len(data) == 0:

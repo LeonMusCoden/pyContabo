@@ -3,7 +3,6 @@ import json
 from .Snapshot import Snapshot
 from .SnapshotsAudits import SnapshotsAudits
 from .errors import NotFound
-from .util import makeRequest, statusCheck
 
 
 class Snapshots:
@@ -22,7 +21,6 @@ class Snapshots:
             resp = self._http.request(type="get",
                                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{id}")
 
-            statusCheck(resp.status_code)
             if resp.status_code == 404:
                 raise NotFound("Snapshot", {"snapshotId": id})
 
@@ -34,7 +32,6 @@ class Snapshots:
             resp = self._http.request(type="get",
                                url=url)
 
-            statusCheck(resp.status_code)
             data = resp.json()["data"]
             if len(data) == 0:
                 raise NotFound("Snapshot")
@@ -56,7 +53,6 @@ class Snapshots:
                            url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots",
                            data=data)
 
-        statusCheck(resp.status_code)
         print(resp.json())
 
         # TODO: Return SnapshotAudit object

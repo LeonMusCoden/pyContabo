@@ -3,7 +3,6 @@ from typing import List
 
 from .InstanceActionsAudits import InstanceActionsAudits
 from .Snapshots import Snapshots
-from .util import makeRequest, statusCheck
 
 
 class Instance:
@@ -41,7 +40,6 @@ class Instance:
         status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
 
-        statusCheck(status)
         if status == 201:
             return True
         return False
@@ -52,7 +50,6 @@ class Instance:
         status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop").status_code
 
-        statusCheck(status)
         if status == 201:
             return True
         return False
@@ -64,7 +61,6 @@ class Instance:
         status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
 
-        statusCheck(status)
         if status == 201:
             return True
         return False
@@ -76,7 +72,6 @@ class Instance:
                              data={"imageId": imageId, "sshKeys": sshKeys, "rootPassword": rootPassword,
                                   "userData": userData}).status_code
 
-        statusCheck(status)
         if status == 200:
             return True
         return False
@@ -86,7 +81,6 @@ class Instance:
         status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel").status_code
 
-        statusCheck(status)
         if status == 200:
             return True
         return False

@@ -1,4 +1,3 @@
-from .util import makeRequest, statusCheck
 
 
 class Snapshot:
@@ -32,7 +31,6 @@ class Snapshot:
                                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
                                data={"name": name, "description": description})
 
-        statusCheck(resp.status_code)
         if resp.status_code == 200:
             return True
         return False
@@ -43,7 +41,6 @@ class Snapshot:
         resp = self._http.request(type="delete",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}")
 
-        statusCheck(resp.status_code)
         if resp.status_code == 204:
             return True
         return False
@@ -54,7 +51,6 @@ class Snapshot:
         resp = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback")
 
-        statusCheck(resp.status_code)
         if resp.status_code == 200:
             return True
         return False

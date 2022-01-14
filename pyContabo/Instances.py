@@ -7,7 +7,6 @@ from .errors import NotFound
 from .types.licenses import license
 from .types.products import product
 from .types.regions import region
-from .util import makeRequest, statusCheck
 
 
 class Instances:
@@ -25,7 +24,6 @@ class Instances:
             resp = self._http.request(type="get",
                                url=f"https://api.contabo.com/v1/compute/instances/{id}")
 
-            statusCheck(resp.status_code)
             if resp.status_code == 404:
                 raise NotFound("Instance", {"instanceId": id})
 
@@ -37,7 +35,6 @@ class Instances:
             resp = self._http.request(type="get",
                                url=url)
 
-            statusCheck(resp.status_code)
             data = resp.json()["data"]
             if len(data) == 0:
                 raise NotFound("Instance")
@@ -57,7 +54,6 @@ class Instances:
                                 "rootPassword": rootPassword, "userData": userData, "license": licenseName,
                                 "period": period})
 
-        statusCheck(resp.status_code)
         print(resp.json())
 
         # TODO: Return InstanceAudit object
