@@ -14,3 +14,14 @@ instance = comp.Instances.get()[0]
 print(f"IPv4:\t{instance.ipv4}\nCPU Cores:\t{instance.cpuCores}\nRAM:\t{instance.ramMb}\nDrive:\t{instance.diskMb} ({instance.productType})")
 print(instance.Snapshots.Audits.get()[0].rawJson)
 ```
+
+## TODO
+- [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
+- [ ] Images and Images Audits
+- [ ] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
+- [ ] Users, Roles, User Audits, Roles Audits
+- [ ] Secrets, Secrets Audits
+- [ ] Logging
+- [ ] Documentation
+- [ ] Better API key management (auto renewel and maybe get rid of global variables)
+
