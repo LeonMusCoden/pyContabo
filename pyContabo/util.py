@@ -8,47 +8,35 @@ from . import auth
 from .errors import *
 
 
-def makeRequest(type, url, data=None):  # Might implement getToken here, I don't know
+def makeRequest(type: str, url: str, data: dict=None, x_request_id: str=None, x_trace_id: str=None):  # Might implement getToken here, I don't know
     """Makes the API request except for getToken()"""
 
-    if data is None:
-        data = {}
+    if not x_request_id:
+        x_request_id = str(uuid.uuid4())
+    if not x_trace_id:
+        x_trace_id = str(randint(100000, 999999))
 
     headers = CaseInsensitiveDict()
     headers["Authorization"] = f"Bearer {auth.token}"
-    headers["x-request-id"] = str(uuid.uuid4())
-    headers["x-trace-id"] = str(randint(100000, 999999))
-
-    if type == "get":
+    headers["x-request-id"] = x_request_id
+    headers["x-trace-id"] = x_trace_id
+    if type in ["get", "post"]:
         headers["Content-Type"] = "application/json"
-        return requests.get(url, headers=headers)
 
-    elif type == "post":
-        # headers["Content-Length"] = "0"
-        headers["Content-Type"] = "application/json"
-        if data:
-            return requests.post(url, headers=headers, data=data)
-        else:
-            return requests.post(url, headers=headers)
-
-    elif type == "delete":
-        headers["Content-Type"] = "application/json"
-        return requests.delete(url, headers=headers)
-
-    elif type == "patch":
-        headers["Content-Type"] = "application/json"
-        return requests.patch(url, headers=headers, data=data)
+    if data:
+        return requests.request(type.capitalize(), url, headers=headers, data=data)
+    return requests.request(type.capitalize(), url, headers=headers)
 
 
 def statusCheck(status):
     """replacement for a bunch of resp.status_code everywhere"""
 
-    print(status)
     if status == 401:
         raise BadAuth()
-    if status == 409:
+    elif status == 409:
         raise ConflictingRessources()
     elif status == 429:
         raise RateLimitReached()
     elif status == 500:
         raise ServerError()
+
