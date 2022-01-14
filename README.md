@@ -1,15 +1,11 @@
 # pyContabo
 basic python wrapper for the [Contabo API](https://api.contabo.com).
 
-<<<<<<< HEAD
+
 This wrapper is currently incomplete. 
 Everything in the "Compute Instances" category has been implemented. 
 Some functions have not been tested yet: Instance.reinstall, Instance.cancel, Instances.create, and Snapshot.rollback.
-## Example
-=======
-This wrapper is currently incomplete.
-Everything in the "Compute Instances" category has been implemented.
-Some functions have not been tested yet: Instance.reinstall, Instance.cancel, and Instances.create.
+
 ## Example
 ```
 from pyContabo.ComputeInstances import computeInstances
