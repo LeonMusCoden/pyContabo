@@ -50,6 +50,8 @@ class APIClient:
             x_request_id = str(uuid4())
         if not x_trace_id:
             x_trace_id = str(randint(100000, 999999))
+        if not data:
+            data = {}
 
         headers = CaseInsensitiveDict()
         headers["Authorization"] = f"Bearer {self.bearer}"
@@ -58,9 +60,7 @@ class APIClient:
         if type in ["get", "post"]:
             headers["Content-Type"] = "application/json"
 
-        if data:
-            resp = requests.request(type.capitalize(), url, headers=headers, data=data)
-        resp = requests.request(type.capitalize(), url, headers=headers)
+        resp = requests.request(type.capitalize(), url, headers=headers, data=data)
 
         status = resp.status_code
         if status == 409:
