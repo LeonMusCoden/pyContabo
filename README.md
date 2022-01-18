@@ -8,16 +8,16 @@ Some functions have not been tested yet: Instance.reinstall, Instance.cancel, In
 
 ## Example
 ```
-from pyContabo.ComputeInstances import computeInstances
-comp = computeInstances("client_id", "client_secret", "api_user", "api_password")
-instance = comp.Instances.get()[0]
+from pyContabo.Contabo import contabo
+cont = contabo("client_id", "client_secret", "api_user", "api_password")
+instance = cont.Instances.get()[0]
 print(f"IPv4:\t{instance.ipv4}\nCPU Cores:\t{instance.cpuCores}\nRAM:\t{instance.ramMb}\nDrive:\t{instance.diskMb} ({instance.productType})")
 print(instance.Snapshots.Audits.get()[0].rawJson)
 ```
 
 ## TODO
 - [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
-- [ ] Images and Images Audits
+- [X] Images and Images Audits
 - [ ] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
 - [ ] Users, Roles, User Audits, Roles Audits
 - [ ] Secrets, Secrets Audits
