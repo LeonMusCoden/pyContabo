@@ -1,8 +1,11 @@
 import json
 from typing import List
+import logging
 
 from .InstanceActionsAudits import InstanceActionsAudits
 from .Snapshots import Snapshots
+
+# _log = logging.getLogger(__name__)
 
 
 class Instance:
@@ -66,6 +69,7 @@ class Instance:
         return False
 
     def reinstall(self, imageId: str, sshKeys: List[int] = None, rootPassword: int = None, userData: str = None):
+        """reinstalls the OS of the instance"""
 
         status = self._http.request(type="patch",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}",
@@ -77,6 +81,7 @@ class Instance:
         return False
 
     def cancel(self):
+        """cancels the instance"""
 
         status = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel").status_code

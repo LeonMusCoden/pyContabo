@@ -37,12 +37,3 @@ class ServerError(Exception):
         self.message = message
         super().__init__(self.message)
 
-
-class NotFound(Exception):
-    """Exception raised for empty data response.
-    No Instance was found for get()
-    """
-
-    def __init__(self, type, message=""):
-        self.message = f"No result for {type} query"
-        super().__init__(self.message)

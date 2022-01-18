@@ -20,7 +20,7 @@ class Snapshot:
         self.rawJson = json
 
     def update(self, name: str, description: str=None):
-        """updates name and description of a snapshot"""
+        """updates name and description of the snapshot"""
 
         if description:
             resp = self._http.request(type="patch",
@@ -36,7 +36,7 @@ class Snapshot:
         return False
 
     def delete(self):
-        """deletes a snapshot"""
+        """deletes the snapshot"""
 
         resp = self._http.request(type="delete",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}")
@@ -46,7 +46,7 @@ class Snapshot:
         return False
 
     def rollback(self):
-        """rollbacks the instance to a snapshot"""
+        """restores the instance to the snapshot"""
 
         resp = self._http.request(type="post",
                              url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback")

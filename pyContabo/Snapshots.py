@@ -2,7 +2,6 @@ import json
 
 from .Snapshot import Snapshot
 from .SnapshotsAudits import SnapshotsAudits
-from .errors import NotFound
 
 
 class Snapshots:
@@ -22,9 +21,9 @@ class Snapshots:
                                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{id}")
 
             if resp.status_code == 404:
-                raise NotFound("Snapshot", {"snapshotId": id})
+                return []
 
-            return Snapshot(resp.json()["data"][0], self._http)  # TODO: Create Snapshot using JSON
+            return Snapshot(resp.json()["data"][0], self._http)
 
         else:
             url = f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderByFields}:{orderBy}&' if orderByFields is not None else ''}{f'name={name}&' if name is not None else ''}"
@@ -34,11 +33,11 @@ class Snapshots:
 
             data = resp.json()["data"]
             if len(data) == 0:
-                raise NotFound("Snapshot")
+                return []
 
             snapshots = []
             for i in resp.json()["data"]:
-                snapshots.append(Snapshot(i, self._http))  # TODO: Create Snapshot using JSON
+                snapshots.append(Snapshot(i, self._http))
             return snapshots
 
     def create(self, name: str, description: str = None):
@@ -55,7 +54,6 @@ class Snapshots:
 
         print(resp.json())
 
-        # TODO: Return SnapshotAudit object
         if resp.status_code == 201:
             return True
         return False

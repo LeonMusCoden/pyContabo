@@ -1,4 +1,3 @@
-from .errors import NotFound
 from .types.Audit import SnapshotsAudit
 
 
@@ -19,7 +18,7 @@ class SnapshotsAudits:
         if resp.status_code == 200:
             data = resp.json()["data"]
             if len(data) == 0:
-                raise NotFound("SnapshotsAudits")
+                return []
 
             audits = []
             for i in resp.json()["data"]:

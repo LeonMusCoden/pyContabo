@@ -1,4 +1,3 @@
-from .errors import NotFound
 from .types.Audit import InstancesAudit
 
 
@@ -19,7 +18,7 @@ class InstancesAudits:
         if resp.status_code != 200:
             data = resp.json()["data"]
             if len(data) == 0:
-                raise NotFound("InstancesAudits")
+                return []
 
             audits = []
             for i in resp.json()["data"]:
