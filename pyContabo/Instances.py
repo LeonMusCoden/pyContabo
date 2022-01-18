@@ -9,7 +9,7 @@ from .types.licenses import license
 from .types.products import product
 from .types.regions import region
 
-_log = logging.getLogger(__name__)
+# _log = logging.getLogger(__name__)
 
 
 class Instances:
