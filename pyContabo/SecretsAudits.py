@@ -1,7 +1,7 @@
 from .types.Audit import SecretsAudit
 
 
-class SnapshotsAudits:
+class SecretsAudits:
 
     def __init__(self, _http):
         self._http = _http

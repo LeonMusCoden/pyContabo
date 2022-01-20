@@ -1,7 +1,7 @@
 import json
 
 from .Secret import Secret
-from .SecretsAudits import SecretesAudits
+from .SecretsAudits import SecretsAudits
 
 
 class Secrets:
@@ -10,7 +10,7 @@ class Secrets:
 
         self._http = _http
         self.instanceId = instanceId
-        self.Audits = SecretesAudits(_http)
+        self.Audits = SecretsAudits(_http)
 
     def get(self, id: str = None, page: int = None, pageSize: int = None, orderByFields: str = None,
             orderBy: str = None, name: str = None, type: str = None):
