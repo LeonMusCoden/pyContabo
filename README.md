@@ -17,10 +17,10 @@ print(instance.Snapshots.Audits.get()[0].rawJson)
 
 ## TODO
 - [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
-- [X] Images and Images Audits
+- [ ] Images and Images Audits
 - [ ] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
 - [ ] Users, Roles, User Audits, Roles Audits
-- [ ] Secrets, Secrets Audits
+- [X] Secrets, Secrets Audits
 - [ ] Logging
 - [ ] Documentation
 - [X] Better API key management (auto renewel and maybe get rid of global variables)
