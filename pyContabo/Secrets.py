@@ -9,7 +9,6 @@ class Secrets:
     def __init__(self, _http):
 
         self._http = _http
-        self.instanceId = instanceId
         self.Audits = SecretsAudits(_http)
 
     def get(self, id: str = None, page: int = None, pageSize: int = None, orderByFields: str = None,
@@ -23,7 +22,7 @@ class Secrets:
             if resp.status_code == 404:
                 return []
 
-            return Secret(resp.json()["data"][0], self._http)  # TODO: Create Snapshot using JSON
+            return Secret(resp.json()["data"][0], self._http)
 
         else:
             url = f"https://api.contabo.com/v1/secrets?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderByFields}:{orderBy}&' if orderByFields is not None else ''}{f'name={name}&' if name is not None else ''}{f'name={type}&' if type is not None else ''}"
