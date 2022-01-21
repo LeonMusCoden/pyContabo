@@ -19,7 +19,7 @@ class Instances:
         self.Audits = InstancesAudits(_http)
         self._http = _http
 
-    def get(self, id=None, page=None, pageSize=None, orderByField=None, orderBy=None, name=None, region=None,
+    def get(self, id=None, page=None, pageSize=None, orderBy=None, name=None, region=None,
             instanceId=None, status=None):
         """gets any instance by id or other parameters through the paging system"""
 
@@ -34,7 +34,7 @@ class Instances:
             return Instance(resp.json()["data"][0], self._http)
 
         else:
-            url = f"https://api.contabo.com/v1/compute/instances?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderByField}:{orderBy}&' if orderByField is not None else ''}{f'name={name}&' if name is not None else ''}{f'region={region}&' if region is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'status={status}&' if status is not None else ''}"
+            url = f"https://api.contabo.com/v1/compute/instances?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'name={name}&' if name is not None else ''}{f'region={region}&' if region is not None else ''}{f'instanceId={instanceId}&' if instanceId is not None else ''}{f'status={status}&' if status is not None else ''}"
             url = url[:-1]
             resp = self._http.request(type="get",
                                url=url)
