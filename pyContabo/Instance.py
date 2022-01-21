@@ -40,52 +40,59 @@ class Instance:
     def start(self):
         """starts the instance"""
 
-        status = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
+        resp = self._http.request(type="post",
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start")
 
-        if status == 201:
+        if resp.status_code == 201:
             return True
+        print(resp.status_code)
+        print(resp)
         return False
 
     def stop(self):
         """stops the instance"""
 
-        status = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop").status_code
+        resp = self._http.request(type="post",
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop")
 
-        if status == 201:
+        if resp.status_code == 201:
             return True
+        print(resp.status_code)
+        print(resp)
         return False
 
     def restart(self):
-        """restarts the instance
-        (technically, it's the same as start)"""
+        """restarts the instance"""
 
-        status = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start").status_code
+        resp = self._http.request(type="post",
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/restart")
 
-        if status == 201:
+        if resp.status_code == 201:
             return True
+        print(resp.status_code)
+        print(resp)
         return False
 
     def reinstall(self, imageId: str, sshKeys: List[int] = None, rootPassword: int = None, userData: str = None):
         """reinstalls the OS of the instance"""
 
-        status = self._http.request(type="patch",
+        resp = self._http.request(type="patch",
                              url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}",
                              data={"imageId": imageId, "sshKeys": sshKeys, "rootPassword": rootPassword,
-                                  "userData": userData}).status_code
+                                  "userData": userData})
 
-        if status == 200:
+        if resp.status_code == 200:
             return True
+        print(resp.status_code)
         return False
 
     def cancel(self):
         """cancels the instance"""
 
-        status = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel").status_code
+        resp = self._http.request(type="post",
+                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel")
 
-        if status == 200:
+        if resp.status_code == 200:
             return True
+        print(resp.status_code)
         return False
