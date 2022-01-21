@@ -15,7 +15,7 @@ class InstancesAudits:
         resp = self._http.request(type="get",
                            url=url)
 
-        if resp.status_code != 200:
+        if resp.status_code == 200:
             data = resp.json()["data"]
             if len(data) == 0:
                 return []
@@ -25,4 +25,5 @@ class InstancesAudits:
                 audits.append(InstancesAudit(i))
             return audits
         else:
+            print(resp.status_code)
             return False

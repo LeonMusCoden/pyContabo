@@ -15,7 +15,7 @@ class InstanceActionsAudits:
         resp = makeRequest(type="get",
                            url=url)
 
-        if resp.status_code != 200:
+        if resp.status_code == 200:
             data = resp.json()["data"]
             if len(data) == 0:
                 return []
