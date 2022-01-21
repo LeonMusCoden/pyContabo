@@ -35,7 +35,7 @@ class Instance:
 
         self.rawJson = json
         self.Snapshots = Snapshots(json["instanceId"], _http)
-        self.Audits = InstanceActionsAudits()
+        self.Audits = InstanceActionsAudits(_http)
 
     def start(self):
         """starts the instance"""
