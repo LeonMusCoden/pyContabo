@@ -1,7 +1,8 @@
 from .Instances import Instances
 from .Secrets import Secrets
 from .Images import Images
-from .http import APIClient
+from .util.http import APIClient
+
 
 class contabo:
 
