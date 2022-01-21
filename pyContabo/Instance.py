@@ -45,8 +45,6 @@ class Instance:
 
         if resp.status_code == 201:
             return True
-        print(resp.status_code)
-        print(resp)
         return False
 
     def stop(self):
@@ -57,8 +55,6 @@ class Instance:
 
         if resp.status_code == 201:
             return True
-        print(resp.status_code)
-        print(resp)
         return False
 
     def restart(self):
@@ -69,8 +65,6 @@ class Instance:
 
         if resp.status_code == 201:
             return True
-        print(resp.status_code)
-        print(resp)
         return False
 
     def reinstall(self, imageId: str, sshKeys: List[int] = None, rootPassword: int = None, userData: str = None):
@@ -83,7 +77,6 @@ class Instance:
 
         if resp.status_code == 200:
             return True
-        print(resp.status_code)
         return False
 
     def cancel(self):
@@ -94,5 +87,4 @@ class Instance:
 
         if resp.status_code == 200:
             return True
-        print(resp.status_code)
         return False
