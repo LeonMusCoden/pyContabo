@@ -28,7 +28,7 @@ class Image:
         """updates the name and the value of the image"""
 
         resp = self._http.request(type="patch",
-                                  url=f"https://api.contabo.com/v1/images/{self.imageId}",
+                                  url=f"https://api.contabo.com/v1/compute/images/{self.imageId}",
                                   data={"name": name, "value": value})
 
         if resp.status_code == 200:
@@ -39,7 +39,7 @@ class Image:
         """deletes the image"""
 
         resp = self._http.request(type="delete",
-                             url=f"https://api.contabo.com/v1/images/{self.imageId}")
+                             url=f"https://api.contabo.com/v1/compute/images/{self.imageId}")
 
         if resp.status_code == 204:
             return True

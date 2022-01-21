@@ -1,5 +1,6 @@
 from .Instances import Instances
 from .Secrets import Secrets
+from .Images import Images
 from .http import APIClient
 
 class contabo:
@@ -8,3 +9,4 @@ class contabo:
         self._http = APIClient(client_id, client_secret, api_user, api_password)
         self.Instances = Instances(self._http)
         self.Secrets = Secrets(self._http)
+        self.Images = Images(self._http)
