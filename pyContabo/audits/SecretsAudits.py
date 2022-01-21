@@ -1,4 +1,4 @@
-from .types.Audit import SecretsAudit
+from .Audit import SecretsAudit
 
 
 class SecretsAudits:

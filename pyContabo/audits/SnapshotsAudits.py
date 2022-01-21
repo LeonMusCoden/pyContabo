@@ -1,4 +1,4 @@
-from .types.Audit import SnapshotsAudit
+from .Audit import SnapshotsAudit
 
 
 class SnapshotsAudits:

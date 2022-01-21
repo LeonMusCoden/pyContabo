@@ -1,4 +1,4 @@
-from .types.Audit import InstancesAudit
+from .Audit import InstancesAudit
 
 
 class InstancesAudits:

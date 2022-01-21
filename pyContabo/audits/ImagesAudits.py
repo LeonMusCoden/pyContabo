@@ -1,4 +1,4 @@
-from .types.Audit import ImagesAudit
+from .Audit import ImagesAudit
 
 
 class ImagesAudits:

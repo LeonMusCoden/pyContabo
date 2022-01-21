@@ -1,4 +1,4 @@
-from .types.Audit import TagsAudit
+from .Audit import TagsAudit
 
 
 class TagsAudits:
