@@ -1,7 +1,7 @@
 import json
 
 from .Tag import Tag
-from .TagsAudits import TagsAudits
+from .audits.TagsAudits import TagsAudits
 
 
 class Tags:

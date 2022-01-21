@@ -1,7 +1,7 @@
 import json
 
 from .Image import Image
-from .ImagesAudits import ImagesAudits
+from .audits.ImagesAudits import ImagesAudits
 from .types.ImagesStats import ImagesStats
 
 

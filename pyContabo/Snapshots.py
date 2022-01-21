@@ -1,7 +1,7 @@
 import json
 
 from .Snapshot import Snapshot
-from .SnapshotsAudits import SnapshotsAudits
+from .audits.SnapshotsAudits import SnapshotsAudits
 
 
 class Snapshots:

@@ -4,7 +4,7 @@ import logging
 
 
 from .Instance import Instance
-from .InstancesAudits import InstancesAudits
+from .audits.InstancesAudits import InstancesAudits
 from .types.licenses import license
 from .types.products import product
 from .types.regions import region

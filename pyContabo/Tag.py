@@ -1,5 +1,5 @@
 
-class Secret:
+class Tag:
 
     def __init__(self, json, _http):
 

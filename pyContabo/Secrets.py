@@ -1,7 +1,7 @@
 import json
 
 from .Secret import Secret
-from .SecretsAudits import SecretsAudits
+from .audits.SecretsAudits import SecretsAudits
 
 
 class Secrets:

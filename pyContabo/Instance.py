@@ -2,7 +2,7 @@ import json
 from typing import List
 import logging
 
-from .InstanceActionsAudits import InstanceActionsAudits
+from .audits.InstanceActionsAudits import InstanceActionsAudits
 from .Snapshots import Snapshots
 
 # _log = logging.getLogger(__name__)
