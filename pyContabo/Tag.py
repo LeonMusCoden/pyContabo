@@ -1,9 +1,12 @@
+from .Assignments import Assignments
+
 
 class Tag:
 
     def __init__(self, json, _http):
 
         self._http = _http
+        self.Assignments = Assignments(_http, json["tagId"])
 
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -14,7 +17,7 @@ class Tag:
         self.rawJson = json
 
     def update(self, name: str, color: str):
-        """updates the name and the value of the secret"""
+        """updates the name and the value of the tag"""
 
         resp = self._http.request(type="patch",
                                   url=f"https://api.contabo.com/v1/tags/{self.tagId}",
@@ -25,11 +28,21 @@ class Tag:
         return False
 
     def delete(self):
-        """deletes the secret"""
+        """deletes the tag"""
 
         resp = self._http.request(type="delete",
                              url=f"https://api.contabo.com/v1/tags/{self.tagId}")
 
         if resp.status_code == 204:
+            return True
+        return False
+
+    def assign(self, resourceType, resourceId):
+        """assigns tag to resource"""
+
+        resp = self._http.request(type="post",
+                                  url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{resourceType}/{resourceId}")
+
+        if resp.status_code == 201:
             return True
         return False
