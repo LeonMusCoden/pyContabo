@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 from .User import User
 from .audits.UsersAudits import UsersAudits

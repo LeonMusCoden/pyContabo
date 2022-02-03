@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 from .Role import Role
 from .audits.RolesAudits import RolesAudits

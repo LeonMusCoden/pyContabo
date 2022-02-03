@@ -1,4 +1,5 @@
 from .Role import Role
+from typing import List
 
 
 class User:

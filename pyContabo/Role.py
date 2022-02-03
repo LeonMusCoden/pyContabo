@@ -1,4 +1,5 @@
 from .types.apiPermissions import apiPermissions
+from typing import List
 
 
 class Role:
