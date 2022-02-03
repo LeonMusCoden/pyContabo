@@ -18,8 +18,8 @@ print(instance.Snapshots.Audits.get()[0].rawJson)
 ## TODO
 - [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
 - [X] Images and Images Audits
-- [ ] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
-- [ ] Users, Roles, User Audits, Roles Audits
+- [X] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
+- [X] Users, Roles, User Audits, Roles Audits
 - [X] Secrets, Secrets Audits
 - [ ] Logging
 - [ ] Documentation
