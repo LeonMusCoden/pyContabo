@@ -10,7 +10,7 @@ class TagAssignmentsAudits:
             requestId=None, changedBy=None):
         """gets audits history through the paging system"""
 
-        url = f"https://api.contabo.com/v1/tags/audits?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'tagId={tagId}&' if tagId is not None else ''}{f'resourceId={resourceId}&' if resourceId is not None else ''}{f'requestId={requestId}&' if requestId is not None else ''}{f'imageId={imageId}&' if imageId is not None else ''}{f'changedBy={changedBy}&' if changedBy is not None else ''}"
+        url = f"https://api.contabo.com/v1/tags/audits?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'tagId={tagId}&' if tagId is not None else ''}{f'resourceId={resourceId}&' if resourceId is not None else ''}{f'requestId={requestId}&' if requestId is not None else ''}{f'changedBy={changedBy}&' if changedBy is not None else ''}"
         url = url[:-1]
         resp = self._http.request(type="get",
                            url=url)
@@ -22,7 +22,7 @@ class TagAssignmentsAudits:
 
             audits = []
             for i in resp.json()["data"]:
-                audits.append(TagAssignmentsAuditAudit(i))
+                audits.append(TagAssignmentsAudit(i))
             return audits
         else:
             return False
