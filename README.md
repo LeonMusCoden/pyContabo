@@ -1,11 +1,10 @@
 # pyContabo
-basic python wrapper for the [Contabo API](https://api.contabo.com).
+python API Client for the [Contabo API](https://api.contabo.com).
 
+Contabo offers web hosting with dedicated servers, colocation, and VPS hosting plans.
+Contabo API allows you to manage your resources using HTTP requests.
 
-This wrapper is currently incomplete. 
-Everything in the "Compute Instances" category has been implemented. 
-Some functions have not been tested yet: Instance.reinstall, Instance.cancel, Instances.create, and Snapshot.rollback.
-
+This client is unofficial.
 ## Install
 
 ### Using pip
