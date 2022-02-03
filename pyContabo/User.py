@@ -3,7 +3,6 @@ from typing import List
 
 
 class User:
-
     def __init__(self, json, _http):
 
         self._http = _http
@@ -27,74 +26,107 @@ class User:
 
         self.rawJson = json
 
-    def update(self, firstName: str, lastName: str, email: str, enabled: bool, totp: bool, admin: bool, accessAllResources: bool, locale: str, roles: List[int]):
+    def update(
+        self,
+        firstName: str,
+        lastName: str,
+        email: str,
+        enabled: bool,
+        totp: bool,
+        admin: bool,
+        accessAllResources: bool,
+        locale: str,
+        roles: List[int],
+    ) -> bool:
         """updates user info"""
 
         data = {}
 
-        if firstName: data.append(firstName)
-        if lastName: data.append(lastName)
-        if email: data.append(email)
-        if enabled: data.append(enabled)
-        if totp: data.append(totp)
-        if admin: data.append(admin)
-        if accessAllResources: data.append(accessAllResources)
-        if locale: data.append(locale)
-        if roles: data.append(roles)
+        if firstName:
+            data.append(firstName)
+        if lastName:
+            data.append(lastName)
+        if email:
+            data.append(email)
+        if enabled:
+            data.append(enabled)
+        if totp:
+            data.append(totp)
+        if admin:
+            data.append(admin)
+        if accessAllResources:
+            data.append(accessAllResources)
+        if locale:
+            data.append(locale)
+        if roles:
+            data.append(roles)
 
-        resp = self._http.request(type="patch",
-                               url=f"https://api.contabo.com/v1/users/{self.userId}",
-                               data=data)
+        resp = self._http.request(
+            type="patch",
+            url=f"https://api.contabo.com/v1/users/{self.userId}",
+            data=data,
+        )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def delete(self):
+    def delete(self) -> bool:
         """deletes the user"""
 
-        resp = self._http.request(type="delete",
-                             url=f"https://api.contabo.com/v1/users/{self.userId}")
+        resp = self._http.request(
+            type="delete", url=f"https://api.contabo.com/v1/users/{self.userId}"
+        )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def resetPassword(self, redirectUrl: str = None):
+    def resetPassword(self, redirectUrl: str = None) -> bool:
         """sends reset password email"""
 
         if redirectUrl:
-            resp = self._http.request(type="post",
-                                      url=f"https://api.contabo.com/v1/users/{self.userId}/reset-password",
-                                      data={"redirectUrl": redirectUrl})
+            resp = self._http.request(
+                type="post",
+                url=f"https://api.contabo.com/v1/users/{self.userId}/reset-password",
+                data={"redirectUrl": redirectUrl},
+            )
         else:
-            resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/users/{self.userId}/reset-password")
+            resp = self._http.request(
+                type="post",
+                url=f"https://api.contabo.com/v1/users/{self.userId}/reset-password",
+            )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def resendEmailVerification(self, redirectUrl: str = None):
+    def resendEmailVerification(self, redirectUrl: str = None) -> bool:
         """sends reset password email"""
 
         if redirectUrl:
-            resp = self._http.request(type="post",
-                                      url=f"https://api.contabo.com/v1/users/{self.userId}/resend-email-verification",
-                                      data={"redirectUrl": redirectUrl})
+            resp = self._http.request(
+                type="post",
+                url=f"https://api.contabo.com/v1/users/{self.userId}/resend-email-verification",
+                data={"redirectUrl": redirectUrl},
+            )
         else:
-            resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/users/{self.userId}/resend-email-verification")
+            resp = self._http.request(
+                type="post",
+                url=f"https://api.contabo.com/v1/users/{self.userId}/resend-email-verification",
+            )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def isPasswordSet(self):
+    def isPasswordSet(self) -> bool:
         """checks if user password is set (API DOCUMENTATION IS INCOMPLETE)"""
 
-        resp = self._http.request(type="get",
-                                      url=f"https://api.contabo.com/v1/users/{self.userId}/is-password-set")
+        resp = self._http.request(
+            type="get",
+            url=f"https://api.contabo.com/v1/users/{self.userId}/is-password-set",
+        )
 
         if resp.status_code == 200:
             return True

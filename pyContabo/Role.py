@@ -3,7 +3,6 @@ from typing import List
 
 
 class Role:
-
     def __init__(self, json, _http):
 
         self._http = _http
@@ -18,7 +17,12 @@ class Role:
 
         self.rawJson = json
 
-    def update(self, name: str, resourcePermissions: List[int], apiPermissions: List[apiPermissions] = None):
+    def update(
+        self,
+        name: str,
+        resourcePermissions: List[int],
+        apiPermissions: List[apiPermissions] = None,
+    ) -> bool:
         """updates name, API permissions and ressource permissions of the role"""
 
         data = {"name": name, "resourcePermissions": resourcePermissions}
@@ -28,19 +32,23 @@ class Role:
             for i in apiPermissions:
                 data["apiPermissions"].append(i.__dict__)
 
-        resp = self._http.request(type="patch",
-                           url=f"https://api.contabo.com/v1/roles/{self.roleType}/{self.roleId}",
-                           data=data)
+        resp = self._http.request(
+            type="patch",
+            url=f"https://api.contabo.com/v1/roles/{self.roleType}/{self.roleId}",
+            data=data,
+        )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def delete(self):
+    def delete(self) -> bool:
         """deletes the role"""
 
-        resp = self._http.request(type="delete",
-                             url=f"https://api.contabo.com/v1/roles/{self.roleType}/{self.roleId}")
+        resp = self._http.request(
+            type="delete",
+            url=f"https://api.contabo.com/v1/roles/{self.roleType}/{self.roleId}",
+        )
 
         if resp.status_code == 204:
             return True

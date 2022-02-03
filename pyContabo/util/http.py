@@ -6,8 +6,8 @@ from random import randint
 
 from .errors import *
 
-class APIClient:
 
+class APIClient:
     def __init__(self, client_id, client_secret, api_user, api_password):
         self.client_id = client_id
         self.client_secret = client_secret
@@ -18,7 +18,9 @@ class APIClient:
 
     def getBearer(self):
 
-        url = "https://auth.contabo.com/auth/realms/contabo/protocol/openid-connect/token"
+        url = (
+            "https://auth.contabo.com/auth/realms/contabo/protocol/openid-connect/token"
+        )
         headers = CaseInsensitiveDict()
         headers["Content-Type"] = "application/x-www-form-urlencoded"
         data = f"client_id={self.client_id}&client_secret={self.client_secret}&grant_type=password&username={self.api_user}&password={self.api_password}"
@@ -30,7 +32,7 @@ class APIClient:
         else:
             raise BadAuth()
 
-    class Decorators():
+    class Decorators:
         @staticmethod
         def refreshBearer(decorated):
             # the function that is used to check
@@ -43,7 +45,14 @@ class APIClient:
             return wrapper
 
     @Decorators.refreshBearer
-    def request(self, type: str, url: str, data: dict=None, x_request_id: str=None, x_trace_id: str=None):
+    def request(
+        self,
+        type: str,
+        url: str,
+        data: dict = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
+    ):
         """Makes the API request except for getToken()"""
 
         if not x_request_id:
@@ -71,4 +80,3 @@ class APIClient:
             raise ServerError()
         else:
             return resp
-

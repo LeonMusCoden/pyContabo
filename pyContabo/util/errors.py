@@ -36,4 +36,3 @@ class ServerError(Exception):
     def __init__(self, message="Server-side error"):
         self.message = message
         super().__init__(self.message)
-

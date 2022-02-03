@@ -9,7 +9,6 @@ from .Snapshots import Snapshots
 
 
 class Instance:
-
     def __init__(self, json, _http):
 
         self._http = _http
@@ -37,53 +36,73 @@ class Instance:
         self.Snapshots = Snapshots(json["instanceId"], _http)
         self.Audits = InstanceActionsAudits(_http)
 
-    def start(self):
+    def start(self) -> bool:
         """starts the instance"""
 
-        resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start")
+        resp = self._http.request(
+            type="post",
+            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/start",
+        )
 
         if resp.status_code == 201:
             return True
         return False
 
-    def stop(self):
+    def stop(self) -> bool:
         """stops the instance"""
 
-        resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop")
+        resp = self._http.request(
+            type="post",
+            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/stop",
+        )
 
         if resp.status_code == 201:
             return True
         return False
 
-    def restart(self):
+    def restart(self) -> bool:
         """restarts the instance"""
 
-        resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/restart")
+        resp = self._http.request(
+            type="post",
+            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/actions/restart",
+        )
 
         if resp.status_code == 201:
             return True
         return False
 
-    def reinstall(self, imageId: str, sshKeys: List[int] = None, rootPassword: int = None, userData: str = None):
+    def reinstall(
+        self,
+        imageId: str,
+        sshKeys: List[int] = None,
+        rootPassword: int = None,
+        userData: str = None,
+    ) -> bool:
         """reinstalls the OS of the instance"""
 
-        resp = self._http.request(type="patch",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}",
-                             data={"imageId": imageId, "sshKeys": sshKeys, "rootPassword": rootPassword,
-                                  "userData": userData})
+        resp = self._http.request(
+            type="patch",
+            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}",
+            data={
+                "imageId": imageId,
+                "sshKeys": sshKeys,
+                "rootPassword": rootPassword,
+                "userData": userData,
+            },
+        )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def cancel(self):
+    def cancel(self) -> bool:
         """cancels the instance"""
 
-        resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel")
+        resp = self._http.request(
+            type="post",
+            url=f"https://api.contabo.com/v1/compute/instances/{str(self.instanceId)}/cancel",
+        )
 
         if resp.status_code == 200:
             return True

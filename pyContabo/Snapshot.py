@@ -1,7 +1,4 @@
-
-
 class Snapshot:
-
     def __init__(self, json, _http):
 
         self._http = _http
@@ -19,37 +16,45 @@ class Snapshot:
 
         self.rawJson = json
 
-    def update(self, name: str, description: str=None):
+    def update(self, name: str, description: str = None) -> bool:
         """updates name and description of the snapshot"""
 
         if description:
-            resp = self._http.request(type="patch",
-                               url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
-                               data={"name": name, "description": description})
+            resp = self._http.request(
+                type="patch",
+                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
+                data={"name": name, "description": description},
+            )
         else:
-            resp = self._http.request(type="patch",
-                               url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
-                               data={"name": name, "description": description})
+            resp = self._http.request(
+                type="patch",
+                url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
+                data={"name": name, "description": description},
+            )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def delete(self):
+    def delete(self) -> bool:
         """deletes the snapshot"""
 
-        resp = self._http.request(type="delete",
-                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}")
+        resp = self._http.request(
+            type="delete",
+            url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}",
+        )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def rollback(self):
+    def rollback(self) -> bool:
         """restores the instance to the snapshot"""
 
-        resp = self._http.request(type="post",
-                             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback")
+        resp = self._http.request(
+            type="post",
+            url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{self.snapshotId}/rollback",
+        )
 
         if resp.status_code == 200:
             return True

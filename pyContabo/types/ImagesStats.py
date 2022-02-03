@@ -1,5 +1,4 @@
 class ImagesStats:
-
     def __init__(self, json):
         self.tenantId = json["tenantId"]
         self.customerId = json["customerId"]
@@ -7,5 +6,3 @@ class ImagesStats:
         self.totalSizeMb = json["totalSizeMb"]
         self.usedSizeMb = json["usedSizeMb"]
         self.freeSizeMb = json["freeSizeMb"]
-
-        self.rawJson = json

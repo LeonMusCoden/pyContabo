@@ -1,6 +1,4 @@
-
 class Secret:
-
     def __init__(self, json, _http):
 
         self._http = _http
@@ -16,22 +14,25 @@ class Secret:
 
         self.rawJson = json
 
-    def update(self, name: str, value: str):
+    def update(self, name: str, value: str) -> bool:
         """updates the name and the value of the secret"""
 
-        resp = self._http.request(type="patch",
-                                  url=f"https://api.contabo.com/v1/secrets/{self.secretId}",
-                                  data={"name": name, "value": value})
+        resp = self._http.request(
+            type="patch",
+            url=f"https://api.contabo.com/v1/secrets/{self.secretId}",
+            data={"name": name, "value": value},
+        )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def delete(self):
+    def delete(self) -> bool:
         """deletes the secret"""
 
-        resp = self._http.request(type="delete",
-                             url=f"https://api.contabo.com/v1/secrets/{self.secretId}")
+        resp = self._http.request(
+            type="delete", url=f"https://api.contabo.com/v1/secrets/{self.secretId}"
+        )
 
         if resp.status_code == 204:
             return True

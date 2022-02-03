@@ -1,5 +1,4 @@
 class Audit:  # Class for the different sub classes
-
     def __init__(self, json):
         self.id = json["id"]
         self.action = json["action"]
@@ -20,21 +19,18 @@ class Audit:  # Class for the different sub classes
 
 
 class InstancesAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.instanceId = json["instanceId"]
 
 
 class InstanceActionsAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.instanceId = json["instanceId"]
 
 
 class SnapshotsAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.instanceId = json["instanceId"]
@@ -42,21 +38,18 @@ class SnapshotsAudit(Audit):
 
 
 class ImagesAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.imageId = json["imageId"]
 
 
 class TagsAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.tagId = json["tagId"]
 
 
 class TagAssignmentsAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.tagId = json["tagId"]
@@ -65,21 +58,18 @@ class TagAssignmentsAudit(Audit):
 
 
 class UsersAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.userId = json["userId"]
 
 
 class RolesAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.roleId = json["roleId"]
 
 
 class SecretsAudit(Audit):
-
     def __init__(self, json):
         super().__init__(json)
         self.secretId = json["secretId"]
