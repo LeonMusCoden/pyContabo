@@ -6,8 +6,21 @@ This wrapper is currently incomplete.
 Everything in the "Compute Instances" category has been implemented. 
 Some functions have not been tested yet: Instance.reinstall, Instance.cancel, Instances.create, and Snapshot.rollback.
 
-## Example
+## Install
+
+### Using pip
+```sh
+pip install git+https://github.com/xLeon-python/pyContabo.git
 ```
+### Using setuptools
+```sh
+git clone https://github.com/xLeon-python/pyContabo.git
+cd pyContabo
+python3 setup.py install --user
+```
+
+## Example
+```py
 from pyContabo.Contabo import contabo
 cont = contabo("client_id", "client_secret", "api_user", "api_password")
 instance = cont.Instances.get()[0]
