@@ -37,6 +37,8 @@ class User:
         accessAllResources: bool,
         locale: str,
         roles: List[int],
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> bool:
         """updates user info"""
 
@@ -65,24 +67,31 @@ class User:
             type="patch",
             url=f"https://api.contabo.com/v1/users/{self.userId}",
             data=data,
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def delete(self) -> bool:
+    def delete(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
         """deletes the user"""
 
         resp = self._http.request(
-            type="delete", url=f"https://api.contabo.com/v1/users/{self.userId}"
+            type="delete",
+            url=f"https://api.contabo.com/v1/users/{self.userId}",
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def resetPassword(self, redirectUrl: str = None) -> bool:
+    def resetPassword(
+        self, redirectUrl: str = None, x_request_id: str = None, x_trace_id: str = None
+    ) -> bool:
         """sends reset password email"""
 
         if redirectUrl:
@@ -90,18 +99,24 @@ class User:
                 type="post",
                 url=f"https://api.contabo.com/v1/users/{self.userId}/reset-password",
                 data={"redirectUrl": redirectUrl},
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
         else:
             resp = self._http.request(
                 type="post",
                 url=f"https://api.contabo.com/v1/users/{self.userId}/reset-password",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def resendEmailVerification(self, redirectUrl: str = None) -> bool:
+    def resendEmailVerification(
+        self, redirectUrl: str = None, x_request_id: str = None, x_trace_id: str = None
+    ) -> bool:
         """sends reset password email"""
 
         if redirectUrl:
@@ -109,23 +124,29 @@ class User:
                 type="post",
                 url=f"https://api.contabo.com/v1/users/{self.userId}/resend-email-verification",
                 data={"redirectUrl": redirectUrl},
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
         else:
             resp = self._http.request(
                 type="post",
                 url=f"https://api.contabo.com/v1/users/{self.userId}/resend-email-verification",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def isPasswordSet(self) -> bool:
+    def isPasswordSet(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
         """checks if user password is set (API DOCUMENTATION IS INCOMPLETE)"""
 
         resp = self._http.request(
             type="get",
             url=f"https://api.contabo.com/v1/users/{self.userId}/is-password-set",
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 200:

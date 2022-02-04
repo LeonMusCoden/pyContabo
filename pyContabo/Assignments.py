@@ -19,6 +19,8 @@ class Assignments:
         page: int = None,
         pageSize: int = None,
         orderBy: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> Union[Assignment, List[Assignment]]:
         """gets any tag assignment by id or other parameters through the paging system"""
 
@@ -26,6 +28,8 @@ class Assignments:
             resp = self._http.request(
                 type="get",
                 url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{resourceType}/{resourceId}",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
             if resp.status_code == 404:
@@ -36,7 +40,9 @@ class Assignments:
         else:
             url = f"https://api.contabo.com/v1/tags/{self.tagId}/assignments?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}"
             url = url[:-1]  # Remove the "?" at the end of the url
-            resp = self._http.request(type="get", url=url)
+            resp = self._http.request(
+                type="get", url=url, x_request_id=x_request_id, x_trace_id=x_trace_id
+            )
 
             data = resp.json()["data"]
             if len(data) == 0:
@@ -47,12 +53,20 @@ class Assignments:
                 assignment.append(Assignment(i, self._http))
             return assignment
 
-    def assign(self, resourceType: str, resourceId: str) -> bool:
+    def assign(
+        self,
+        resourceType: str,
+        resourceId: str,
+        x_request_id: str = None,
+        x_trace_id: str = None,
+    ) -> bool:
         """assigns tag to resource"""
 
         resp = self._http.request(
             type="post",
             url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{resourceType}/{resourceId}",
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 201:

@@ -37,5 +37,5 @@ print(instance.Snapshots.Audits.get()[0].rawJson)
 - [ ] Documentation
 - [X] Better API key management (auto renewel and maybe get rid of global variables)
 - [ ] More types to replace strings in function arguments
-- [ ] Enable support to set `x-request-id` and `x-trace-id` for requests
+- [X] Enable support to set `x-request-id` and `x-trace-id` for requests
 

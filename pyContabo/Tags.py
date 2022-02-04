@@ -18,12 +18,17 @@ class Tags:
         pageSize: int = None,
         orderBy: str = None,
         name: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> Union[Tag, List[Tag]]:
         """gets any tag by id or other parameters through the paging system"""
 
         if id:
             resp = self._http.request(
-                type="get", url=f"https://api.contabo.com/v1/tags/{id}"
+                type="get",
+                url=f"https://api.contabo.com/v1/tags/{id}",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
             if resp.status_code == 404:
@@ -34,7 +39,9 @@ class Tags:
         else:
             url = f"https://api.contabo.com/v1/tags?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'name={name}&' if name is not None else ''}"
             url = url[:-1]  # Remove the "?" at the end of the url
-            resp = self._http.request(type="get", url=url)
+            resp = self._http.request(
+                type="get", url=url, x_request_id=x_request_id, x_trace_id=x_trace_id
+            )
 
             data = resp.json()["data"]
             if len(data) == 0:
@@ -45,13 +52,19 @@ class Tags:
                 tags.append(Tag(i, self._http))
             return tags
 
-    def create(self, name: str, color: str) -> bool:
+    def create(
+        self, name: str, color: str, x_request_id: str = None, x_trace_id: str = None
+    ) -> bool:
         """creates new tag using name, url, OS type, OS version and description"""
 
         data = json.dumps({"name": name, "color": color})
 
         resp = self._http.request(
-            type="post", url=f"https://api.contabo.com/v1/tags", data=data
+            type="post",
+            url=f"https://api.contabo.com/v1/tags",
+            data=data,
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 201:

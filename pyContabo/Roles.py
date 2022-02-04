@@ -22,12 +22,17 @@ class Roles:
         name: str = None,
         apiName: str = None,
         tagName: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> Union[Role, List[Role]]:
         """gets any role by id or other parameters through the paging system"""
 
         if id:
             resp = self._http.request(
-                type="get", url=f"https://api.contabo.com/v1/roles/{roleType}/{id}"
+                type="get",
+                url=f"https://api.contabo.com/v1/roles/{roleType}/{id}",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
             if resp.status_code == 404:
@@ -38,7 +43,9 @@ class Roles:
         else:
             url = f"https://api.contabo.com/v1/roles/{roleType}?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'name={name}&' if name is not None else ''}{f'apiName={apiName}&' if apiName is not None else ''}{f'tagName={tagName}&' if tagName is not None else ''}"
             url = url[:-1]
-            resp = self._http.request(type="get", url=url)
+            resp = self._http.request(
+                type="get", url=url, x_request_id=x_request_id, x_trace_id=x_trace_id
+            )
 
             data = resp.json()["data"]
             if len(data) == 0:
@@ -55,6 +62,8 @@ class Roles:
         name: str,
         resourcePermissions: List[int],
         apiPermissions: List[apiPermissions] = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> bool:
         """creates a new role"""
 
@@ -66,7 +75,11 @@ class Roles:
                 data["apiPermissions"].append(i.__dict__)
 
         resp = self._http.request(
-            type="post", url=f"https://api.contabo.com/v1/roles/{roleType}", data=data
+            type="post",
+            url=f"https://api.contabo.com/v1/roles/{roleType}",
+            data=data,
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 201:
@@ -79,12 +92,16 @@ class Roles:
         pageSize: int = None,
         orderBy: str = None,
         apiName: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> List[apiPermissions]:
         """Lists all available API permissions"""
 
         url = f"https://api.contabo.com/v1/roles/api-permissions?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'apiName={apiName}&' if apiName is not None else ''}"
         url = url[:-1]
-        resp = self._http.request(type="get", url=url)
+        resp = self._http.request(
+            type="get", url=url, x_request_id=x_request_id, x_trace_id=x_trace_id
+        )
 
         data = resp.json()["data"]
         if len(data) == 0:

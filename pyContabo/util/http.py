@@ -35,11 +35,9 @@ class APIClient:
     class Decorators:
         @staticmethod
         def refreshBearer(decorated):
-            # the function that is used to check
-            # the JWT and refresh if necessary
             def wrapper(self, *args, **kwargs):
-                if time() > self.expiration:
-                    self.bearer = self.getBearer()
+                if time() > self.expiration:  # Bearer expired
+                    self.bearer = self.getBearer()  # Get new bearer
                 return decorated(self, *args, **kwargs)
 
             return wrapper
@@ -53,7 +51,7 @@ class APIClient:
         x_request_id: str = None,
         x_trace_id: str = None,
     ):
-        """Makes the API request except for getToken()"""
+        """Makes the API request"""
 
         if not x_request_id:
             x_request_id = str(uuid4())
@@ -72,7 +70,9 @@ class APIClient:
         resp = requests.request(type.capitalize(), url, headers=headers, data=data)
 
         status = resp.status_code
-        if status == 409:
+        if status == 400:
+            raise RequestMalformed()
+        elif status == 409:
             raise ConflictingRessources()
         elif status == 429:
             raise RateLimitReached()

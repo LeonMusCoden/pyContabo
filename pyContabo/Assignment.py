@@ -13,12 +13,14 @@ class Assignment:
 
         self.rawJson = json
 
-    def delete(self) -> bool:
+    def delete(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
         """deletes the secret"""
 
         resp = self._http.request(
             type="delete",
             url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{self.resourceType}/{self.resourceId}",
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 204:

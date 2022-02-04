@@ -28,6 +28,16 @@ class RateLimitReached(Exception):
         super().__init__(self.message)
 
 
+class RequestMalformed(Exception):
+    """Exception raised for 400 respond code.
+    The request was malformed.
+    """
+
+    def __init__(self, message="request was malformed"):
+        self.message = message
+        super().__init__(self.message)
+
+
 class ServerError(Exception):
     """Exception raised for 500 respond code.
     Server-side beep boop gone wrong. In such cases please retry or contact the support.

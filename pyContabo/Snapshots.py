@@ -19,6 +19,8 @@ class Snapshots:
         pageSize: int = None,
         orderBy: str = None,
         name: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> Union[Snapshot, List[Snapshot]]:
         """gets any snapshot by id or other parameters through the paging system"""
 
@@ -26,6 +28,8 @@ class Snapshots:
             resp = self._http.request(
                 type="get",
                 url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots/{id}",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
             if resp.status_code == 404:
@@ -36,7 +40,9 @@ class Snapshots:
         else:
             url = f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'name={name}&' if name is not None else ''}"
             url = url[:-1]
-            resp = self._http.request(type="get", url=url)
+            resp = self._http.request(
+                type="get", url=url, x_request_id=x_request_id, x_trace_id=x_trace_id
+            )
 
             data = resp.json()["data"]
             if len(data) == 0:
@@ -47,7 +53,13 @@ class Snapshots:
                 snapshots.append(Snapshot(i, self._http))
             return snapshots
 
-    def create(self, name: str, description: str = None) -> bool:
+    def create(
+        self,
+        name: str,
+        description: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
+    ) -> bool:
         """creates a new snapshot using name and desc."""
 
         if description:
@@ -59,6 +71,8 @@ class Snapshots:
             type="post",
             url=f"https://api.contabo.com/v1/compute/instances/{self.instanceId}/snapshots",
             data=data,
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         print(resp.json())

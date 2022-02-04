@@ -15,36 +15,47 @@ class Tag:
 
         self.rawJson = json
 
-    def update(self, name: str, color: str) -> bool:
+    def update(
+        self, name: str, color: str, x_request_id: str = None, x_trace_id: str = None
+    ) -> bool:
         """updates the name and the value of the tag"""
 
         resp = self._http.request(
             type="patch",
             url=f"https://api.contabo.com/v1/tags/{self.tagId}",
             data={"name": name, "color": color},
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 200:
             return True
         return False
 
-    def delete(self) -> bool:
+    def delete(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
         """deletes the tag"""
 
         resp = self._http.request(
-            type="delete", url=f"https://api.contabo.com/v1/tags/{self.tagId}"
+            type="delete",
+            url=f"https://api.contabo.com/v1/tags/{self.tagId}",
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 204:
             return True
         return False
 
-    def assign(self, resourceType, resourceId) -> bool:
+    def assign(
+        self, resourceType, resourceId, x_request_id: str = None, x_trace_id: str = None
+    ) -> bool:
         """assigns tag to resource"""
 
         resp = self._http.request(
             type="post",
             url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{resourceType}/{resourceId}",
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 201:

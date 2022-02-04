@@ -19,12 +19,17 @@ class Secrets:
         orderBy: str = None,
         name: str = None,
         type: str = None,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> Union[Secret, List[Secret]]:
         """gets any secret by id or other parameters through the paging system"""
 
         if id:
             resp = self._http.request(
-                type="get", url=f"https://api.contabo.com/v1/secrets/{id}"
+                type="get",
+                url=f"https://api.contabo.com/v1/secrets/{id}",
+                x_request_id=x_request_id,
+                x_trace_id=x_trace_id,
             )
 
             if resp.status_code == 404:
@@ -35,7 +40,9 @@ class Secrets:
         else:
             url = f"https://api.contabo.com/v1/secrets?{f'page={page}&' if page is not None else ''}{f'size={pageSize}&' if pageSize is not None else ''}{f'orderBy={orderBy}&' if orderBy is not None else ''}{f'name={name}&' if name is not None else ''}{f'name={type}&' if type is not None else ''}"
             url = url[:-1]  # Remove the "?" at the end of the url
-            resp = self._http.request(type="get", url=url)
+            resp = self._http.request(
+                type="get", url=url, x_request_id=x_request_id, x_trace_id=x_trace_id
+            )
 
             data = resp.json()["data"]
             if len(data) == 0:
@@ -46,13 +53,24 @@ class Secrets:
                 secrets.append(Secret(i, self._http))
             return snapshots
 
-    def create(self, name: str, value: str, type: str) -> bool:
+    def create(
+        self,
+        name: str,
+        value: str,
+        type: str,
+        x_request_id: str = None,
+        x_trace_id: str = None,
+    ) -> bool:
         """creates a new secret using name, value and type"""
 
         data = json.dumps({"name": name, "value": value, "type": type})
 
         resp = self._http.request(
-            type="post", url=f"https://api.contabo.com/v1/secrets", data=data
+            type="post",
+            url=f"https://api.contabo.com/v1/secrets",
+            data=data,
+            x_request_id=x_request_id,
+            x_trace_id=x_trace_id,
         )
 
         if resp.status_code == 201:
