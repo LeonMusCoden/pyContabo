@@ -1,4 +1,5 @@
 from .Assignments import Assignments
+from .types.resources import resource
 
 
 class Tag:
@@ -47,13 +48,13 @@ class Tag:
         return False
 
     def assign(
-        self, resourceType, resourceId, x_request_id: str = None, x_trace_id: str = None
+        self, resourceType: resource, resourceId: str, x_request_id: str = None, x_trace_id: str = None
     ) -> bool:
         """assigns tag to resource"""
 
         resp = self._http.request(
             type="post",
-            url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{resourceType}/{resourceId}",
+            url=f"https://api.contabo.com/v1/tags/{self.tagId}/assignments/{resourceType.name}/{resourceId}",
             x_request_id=x_request_id,
             x_trace_id=x_trace_id,
         )

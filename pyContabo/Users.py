@@ -3,6 +3,7 @@ from typing import List, Union
 
 from .User import User
 from .audits.UsersAudits import UsersAudits
+from .types.locales import locale
 
 
 class Users:
@@ -62,7 +63,7 @@ class Users:
         totp: bool,
         admin: bool,
         accessAllResources: bool,
-        locale: str,
+        locale: locale,
         roles: List[int],
         x_request_id: str = None,
         x_trace_id: str = None,
@@ -77,7 +78,7 @@ class Users:
             "totp": totp,
             "admin": admin,
             "accessAllResources": accessAllResources,
-            "locale": locale,
+            "locale": locale.name,
         }
 
         if roles:

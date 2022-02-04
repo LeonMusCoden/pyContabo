@@ -55,7 +55,7 @@ class Tags:
     def create(
         self, name: str, color: str, x_request_id: str = None, x_trace_id: str = None
     ) -> bool:
-        """creates new tag using name, url, OS type, OS version and description"""
+        """creates new tag using name and color"""
 
         data = json.dumps({"name": name, "color": color})
 
