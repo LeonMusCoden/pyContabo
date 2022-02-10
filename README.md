@@ -27,6 +27,22 @@ print(f"IPv4:\t{instance.ipv4}\nCPU Cores:\t{instance.cpuCores}\nRAM:\t{instance
 print(instance.Snapshots.Audits.get()[0].rawJson)
 ```
 
+## Support
+### Testing
+I can't test parts of this client because I only own a single VPS. Testing the code is highly appreciated!
+
+The following parts have not been tested yet:
+- Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
+- Users, Roles, User Audits, Roles Audits
+- Secrets, Secrets Audits
+
+### Contributing
+pyContabo is supported on a volunteer basis. Pull requests or bug reports are welcome to optimize the code and fix errors.
+
+[https://github.com/xLeon-python/pyContabo/issues/new](Open an issue)
+
+[https://github.com/xLeon-python/pyContabo/compare](Create a pull request)
+
 ## TODO
 - [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
 - [X] Images and Images Audits
