@@ -39,9 +39,9 @@ The following parts have not been tested yet:
 ### Contributing
 pyContabo is supported on a volunteer basis. Pull requests or bug reports are welcome to optimize the code and fix errors.
 
-[https://github.com/xLeon-python/pyContabo/issues/new](Open an issue)
+[Open an issue](https://github.com/xLeon-python/pyContabo/issues/new)
 
-[https://github.com/xLeon-python/pyContabo/compare](Create a pull request)
+[Create a pull request](https://github.com/xLeon-python/pyContabo/compare)
 
 ## TODO
 - [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
