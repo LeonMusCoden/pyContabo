@@ -1,4 +1,6 @@
 # pyContabo
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 python API Client for the [Contabo API](https://api.contabo.com).
 
 Contabo offers web hosting with dedicated servers, colocation, and VPS hosting plans.

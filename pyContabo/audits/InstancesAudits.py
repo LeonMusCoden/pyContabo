@@ -34,5 +34,4 @@ class InstancesAudits:
                 audits.append(InstancesAudit(i))
             return audits
         else:
-            print(resp.status_code)
             return []

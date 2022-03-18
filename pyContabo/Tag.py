@@ -48,7 +48,11 @@ class Tag:
         return False
 
     def assign(
-        self, resourceType: resource, resourceId: str, x_request_id: str = None, x_trace_id: str = None
+        self,
+        resourceType: resource,
+        resourceId: str,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> bool:
         """assigns tag to resource"""
 

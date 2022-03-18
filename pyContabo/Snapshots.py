@@ -75,8 +75,6 @@ class Snapshots:
             x_trace_id=x_trace_id,
         )
 
-        print(resp.json())
-
         if resp.status_code == 201:
             return True
         return False
