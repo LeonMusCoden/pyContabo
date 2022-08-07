@@ -7,6 +7,9 @@ Contabo offers web hosting with dedicated servers, colocation, and VPS hosting p
 Contabo API allows you to manage your resources using HTTP requests.
 
 This client is unofficial.
+
+[Documentation](https://xleon-python.github.io/pyContabo/)
+
 ## Install
 
 ### Using pip
@@ -54,6 +57,6 @@ pyContabo is supported on a volunteer basis. Pull requests or bug reports are we
 - [ ] Logging
 - [ ] Documentation
 - [X] Better API key management (auto renewel and maybe get rid of global variables)
-- [ ] More types to replace strings in function arguments
+- [X] More types to replace strings in function arguments
 - [X] Enable support to set `x-request-id` and `x-trace-id` for requests
 
