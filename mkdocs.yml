@@ -1,0 +1,18 @@
+site_name: PyContabo
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
+
+nav:
+  - index.md
+  - instances.md
+  - snapshots.md
+  - images.md
+  - tags.md
+  - tags_assignments.md
+  - users.md
+  - roles.md
+  - secrets.md

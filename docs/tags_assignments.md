@@ -1,0 +1,5 @@
+::: pyContabo.Assignments
+
+---
+
+::: pyContabo.Assignment
