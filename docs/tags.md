@@ -1,5 +1,5 @@
-::: pyContabo.Tags
+::: pyContabo.Tags.Tags
 
 ---
 
-::: pyContabo.Tag
+::: pyContabo.Tag.Tag

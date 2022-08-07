@@ -1,5 +1,5 @@
-::: pyContabo.Instances
+::: pyContabo.Instances.Instances
 
 ---
 
-::: pyContabo.Instance
+::: pyContabo.Instance.Instance

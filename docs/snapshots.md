@@ -1,5 +1,5 @@
-::: pyContabo.Snapshots
+::: pyContabo.Snapshots.Snapshots
 
 ---
 
-::: pyContabo.Snapshot
+::: pyContabo.Snapshot.Snapshot

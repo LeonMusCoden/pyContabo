@@ -1,5 +1,5 @@
-::: pyContabo.Roles
+::: pyContabo.Roles.Roles
 
 ---
 
-::: pyContabo.Role
+::: pyContabo.Role.Role

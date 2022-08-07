@@ -10,7 +10,7 @@ This client is unofficial.
 
 [Documentation](https://xleon-python.github.io/pyContabo/)
 
-## Install
+## Installation
 
 ### Using pip
 ```sh
@@ -54,8 +54,10 @@ pyContabo is supported on a volunteer basis. Pull requests or bug reports are we
 - [X] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits
 - [X] Users, Roles, User Audits, Roles Audits
 - [X] Secrets, Secrets Audits
+- [ ] Object Storages, Object Storages Audits
+- [ ] Private Networks, Private Networks Audits
 - [ ] Logging
-- [ ] Documentation
+- [X] Documentation
 - [X] Better API key management (auto renewel and maybe get rid of global variables)
 - [X] More types to replace strings in function arguments
 - [X] Enable support to set `x-request-id` and `x-trace-id` for requests

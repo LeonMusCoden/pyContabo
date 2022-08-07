@@ -1,5 +1,5 @@
-::: pyContabo.Secrets
+::: pyContabo.Secrets.Secrets
 
 ---
 
-::: pyContabo.Secret
+::: pyContabo.Secret.Secret

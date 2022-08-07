@@ -1,5 +1,5 @@
-::: pyContabo.Users
+::: pyContabo.Users.Users
 
 ---
 
-::: pyContabo.User
+::: pyContabo.User.User

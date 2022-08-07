@@ -1,18 +1,63 @@
 site_name: PyContabo
+site_description: "python API Client for the Contabo API. "
+site_url: "https://xleon-python.github.io/pyContabo/"
+repo_url: https://github.com/xLeon-python/pyContabo
+repo_name: xLeon-python/pyContabo
 
 theme:
   name: "material"
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  icon:
+    repo: fontawesome/brands/git-alt
+  features:
+    - navigation.sections
 
 plugins:
-  - mkdocstrings
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: yes
+            merge_init_into_class: yes
+            separate_signature: yes
+            show_root_full_path: no
+            show_root_heading: yes
+
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 nav:
-  - index.md
-  - instances.md
-  - snapshots.md
-  - images.md
-  - tags.md
-  - tags_assignments.md
-  - users.md
-  - roles.md
-  - secrets.md
+  - Home:
+    - index.md
+    - examples.md
+  - Reference:
+    - instances.md
+    - snapshots.md
+    - images.md
+    - tags.md
+    - tags_assignments.md
+    - users.md
+    - roles.md
+    - secrets.md
