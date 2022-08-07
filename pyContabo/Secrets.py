@@ -22,7 +22,29 @@ class Secrets:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> Union[Secret, List[Secret]]:
-        """gets any secret by id or other parameters through the paging system"""
+        """fetches any secret(s) by id or other parameters
+
+        Examples:
+            >>> Secrets.get()
+            [secret]
+            >>> Secrets.get(name="mysecret", type="password")
+            [secret]
+            >>> Secrets.get(id="100")
+            secret
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            id: The identifier of the secret
+            page: Number of page to be fetched.
+            pageSize: Number of elements per page.
+            orderBy: Specify fields and ordering (ASC for ascending, DESC for descending) in following format `field:ASC|DESC`
+            name: The name of the instance.
+            type: The type of the secret. Can be `password` or `ssh`.
+
+        Returns:
+            List of secrets
+        """
 
         if id:
             resp = self._http.request(
@@ -51,7 +73,7 @@ class Secrets:
             secrets = []
             for i in resp.json()["data"]:
                 secrets.append(Secret(i, self._http))
-            return snapshots
+            return secrets
 
     def create(
         self,
@@ -61,7 +83,22 @@ class Secrets:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> bool:
-        """creates a new secret using name, value and type"""
+        """Creates a new secret
+
+        Examples:
+            >>> Secrets.create(name="aName", value="12345678", type="password", period="1")
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            name: The name of the secret.
+            value: The secret value that needs to be saved.
+            type: The type of the secret. Can be `password` or `ssh`.
+
+        Returns:
+            Bool respresenting if the secret has been succesfully created.
+        """
 
         data = json.dumps({"name": name, "value": value, "type": type})
 

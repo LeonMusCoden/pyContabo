@@ -20,14 +20,31 @@ class Role:
     def update(
         self,
         name: str,
-        resourcePermissions: List[int],
+        admin: bool,
+        accessAllResources: bool,
         apiPermissions: List[apiPermissions] = None,
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> bool:
-        """updates name, API permissions and ressource permissions of the role"""
+        """Update attributes to your role. Attributes are optional. If not set, the attributes will retain their original values.
 
-        data = {"name": name, "resourcePermissions": resourcePermissions}
+        Examples:
+            >>> role.update(name="aRole", admin=True, accessAllResources=True, apiPermissions=apiPermissions)
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            name: The name of the role. There is a limit of 255 characters per role.
+            admin: If user is admin he will have permissions to all API endpoints and resources. Enabling this will superseed all role definitions and `accessAllResources`.
+            accessAllResources: Allow access to all resources. This will superseed all assigned resources in a role
+            apiPermissions: Array of apiPermissions
+
+        Returns:
+            Bool respresenting if the role has been succesfully updated.
+        """
+
+        data = {"name": name, "admin": admin, "accessAllResources": accessAllResources}
 
         if apiPermissions:
             data["apiPermissions"] = []
@@ -47,7 +64,19 @@ class Role:
         return False
 
     def delete(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """deletes the role"""
+        """deletes the image
+
+        Examples:
+            >>> role.delete()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the role has been succesfully deleted.
+        """
 
         resp = self._http.request(
             type="delete",

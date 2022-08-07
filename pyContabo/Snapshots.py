@@ -22,7 +22,28 @@ class Snapshots:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> Union[Snapshot, List[Snapshot]]:
-        """gets any snapshot by id or other parameters through the paging system"""
+        """fetches any snapshot(s) by id or other parameters
+
+        Examples:
+            >>> Snapshots.get()
+            [snapshot]
+            >>> Snapshots.get(name="mysnapshots")
+            [snapshot]
+            >>> Snapshots.get(id="100")
+            snapshot
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            id: The identifier of the snapshot
+            page: Number of page to be fetched.
+            pageSize: Number of elements per page.
+            orderBy: Specify fields and ordering (ASC for ascending, DESC for descending) in following format `field:ASC|DESC`
+            name: The name of the snapshot.
+
+        Returns:
+            List of snapshots
+        """
 
         if id:
             resp = self._http.request(
@@ -60,7 +81,21 @@ class Snapshots:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> bool:
-        """creates a new snapshot using name and desc."""
+        """Creates a new snapshot
+
+        Examples:
+            >>> Snapshots.create(name="aName", description="desc.")
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            name: The name of the snapshot.
+            description: The description of the snapshot. There is a limit of 255 characters per snapshot.
+
+        Returns:
+            Bool respresenting if the snapshot has been succesfully created.
+        """
 
         if description:
             data = json.dumps({"name": name, "description": description})

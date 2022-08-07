@@ -14,7 +14,19 @@ class Assignment:
         self.rawJson = json
 
     def delete(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """deletes the secret"""
+        """deletes the assignment
+
+        Examples:
+            >>> assignment.delete()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the assignment has been succesfully deleted.
+        """
 
         resp = self._http.request(
             type="delete",

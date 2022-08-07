@@ -17,7 +17,21 @@ class Secret:
     def update(
         self, name: str, value: str, x_request_id: str = None, x_trace_id: str = None
     ) -> bool:
-        """updates the name and the value of the secret"""
+        """Update attributes to your secret. Attributes are optional. If not set, the attributes will retain their original values. Only name and value can be updated.
+
+        Examples:
+            >>> secret.update(name="name", value="12345678")
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            name: The name of the secret to be saved
+            value: The value of the secret to be saved
+
+        Returns:
+            Bool respresenting if the secret has been succesfully updated.
+        """
 
         resp = self._http.request(
             type="patch",
@@ -32,7 +46,19 @@ class Secret:
         return False
 
     def delete(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """deletes the secret"""
+        """deletes the secret
+
+        Examples:
+            >>> secret.delete()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the secret has been succesfully deleted.
+        """
 
         resp = self._http.request(
             type="delete",

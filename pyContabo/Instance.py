@@ -37,7 +37,19 @@ class Instance:
         self.Audits = InstanceActionsAudits(_http)
 
     def start(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """starts the instance"""
+        """Start a compute instance / resource.
+
+        Examples:
+            >>> instance.start()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the instance/ressource has been succesfully started.
+        """
 
         resp = self._http.request(
             type="post",
@@ -51,7 +63,19 @@ class Instance:
         return False
 
     def stop(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """stops the instance"""
+        """stop a compute instance / resource.
+
+        Examples:
+            >>> instance.stop()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the instance/ressource has been succesfully stopped.
+        """
 
         resp = self._http.request(
             type="post",
@@ -65,7 +89,19 @@ class Instance:
         return False
 
     def restart(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """restarts the instance"""
+        """Restart a compute instance / resource.
+
+        Examples:
+            >>> instance.restart()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the instance/ressource has been succesfully restarted.
+        """
 
         resp = self._http.request(
             type="post",
@@ -84,10 +120,28 @@ class Instance:
         sshKeys: List[int] = None,
         rootPassword: int = None,
         userData: str = None,
+        defaultUser: str = None,
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> bool:
-        """reinstalls the OS of the instance"""
+        """reinstall a specific instance with a new image and optionally add ssh keys, a root password or cloud-init.
+
+        Examples:
+            >>> instance.reinstall(imageId="3f184ab8-a600-4e7c-8c9b-3413e21a3752", sshKeys="[123, 125]", rootPassword=1, userData="#cloud-config", defaultUser="root")
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            imageId: ImageId to be used to setup the compute instance.
+            sshKeys: Array of `secretIds` of public SSH keys for logging into as `defaultUser` with administrator/root privileges. Applies to Linux/BSD systems. Please refer to Secrets Management API.
+            rootPassword: `secretId` of the password for the `defaultUser` with administrator/root privileges. For Linux/BSD please use SSH, for Windows RDP. Please refer to Secrets Management API.
+            userData: Cloud-Init Config in order to customize during start of compute instance.
+            defaultUser: Default user name created for login during (re-)installation with administrative privileges. Allowed values for Linux/BSD are `admin` (use sudo to apply administrative privileges like root) or `root`. Allowed values for Windows are `admin` (has administrative privileges like administrator) or `administrator`.
+
+        Returns:
+            Bool respresenting if the instance has been succesfully reinstalled.
+        """
 
         resp = self._http.request(
             type="patch",
@@ -97,6 +151,7 @@ class Instance:
                 "sshKeys": sshKeys,
                 "rootPassword": rootPassword,
                 "userData": userData,
+                "defaultUser": defaultUser
             },
             x_request_id=x_request_id,
             x_trace_id=x_trace_id,
@@ -107,7 +162,19 @@ class Instance:
         return False
 
     def cancel(self, x_request_id: str = None, x_trace_id: str = None) -> bool:
-        """cancels the instance"""
+        """Cancel a compute instance.
+
+        Examples:
+            >>> instance.cancel()
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+
+        Returns:
+            Bool respresenting if the instance has been succesfully cancelled.
+        """
 
         resp = self._http.request(
             type="post",

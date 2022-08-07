@@ -21,7 +21,28 @@ class Tags:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> Union[Tag, List[Tag]]:
-        """gets any tag by id or other parameters through the paging system"""
+        """fetches any tag(s) by id or other parameters
+
+        Examples:
+            >>> Tags.get()
+            [tag]
+            >>> Tags.get(name="mysecret")
+            [tag]
+            >>> Tags.get(id="12345")
+            tag
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            id: The identifier of the tag
+            page: Number of page to be fetched.
+            pageSize: Number of elements per page.
+            orderBy: Specify fields and ordering (ASC for ascending, DESC for descending) in following format `field:ASC|DESC`
+            name: The name of the tag.
+
+        Returns:
+            List of tags
+        """
 
         if id:
             resp = self._http.request(
@@ -55,7 +76,21 @@ class Tags:
     def create(
         self, name: str, color: str, x_request_id: str = None, x_trace_id: str = None
     ) -> bool:
-        """creates new tag using name and color"""
+        """Creates a new tag
+
+        Examples:
+            >>> Tags.create(name="aName", color="#0A78C3")
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            name: The name of the tag.
+            color: The color of the tag. Color can be specified using hexadecimal value. Default color is #0A78C3
+
+        Returns:
+            Bool respresenting if the tag has been succesfully created.
+        """
 
         data = json.dumps({"name": name, "color": color})
 

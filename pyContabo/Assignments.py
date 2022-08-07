@@ -10,7 +10,7 @@ class Assignments:
 
         self._http = _http
         self.tagId = tagId
-        self.Audits = AssignmentsAudits(_http)
+        self.Audits = TagAssignmentsAudits(_http)
 
     def get(
         self,
@@ -22,7 +22,28 @@ class Assignments:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> Union[Assignment, List[Assignment]]:
-        """gets any tag assignment by id or other parameters through the paging system"""
+        """fetches any tag assignment(s) by id or other parameters
+
+        Examples:
+            >>> Assignments.get()
+            [assignment]
+            >>> Assignments.get(resourceType="instance", resourceId="d65ecf3b-30db-4dc2-9e88-dfc21a14a6bc", orderBy="name:asc")
+            [assignment]
+            >>> Assignments.get(resourceType="instance", resourceId="d65ecf3b-30db-4dc2-9e88-dfc21a14a6bc")
+            assignment
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            resourceType: The identifier of the resource type. Resource type is one of `instance|image|object-storage`
+            resourceId: The identifier of the resource id
+            page: Number of page to be fetched.
+            pageSize: Number of elements per page.
+            orderBy: Specify fields and ordering (ASC for ascending, DESC for descending) in following format `field:ASC|DESC`
+
+        Returns:
+            List of tag assignments
+        """
 
         if resourceType and resourceId:
             resp = self._http.request(
@@ -60,7 +81,21 @@ class Assignments:
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> bool:
-        """assigns tag to resource"""
+        """Create a new tag assignment. This marks the specified resource with the specified tag for organizing purposes or to restrict access to that resource.
+
+        Examples:
+            >>> Assignments.assign(resourceType="instance", resourceId="d65ecf3b-30db-4dc2-9e88-dfc21a14a6bc")
+            True
+
+        Args:
+            x_request_id: Uuid4 to identify individual requests for support cases.
+            x_trace_id: Identifier to trace group of requests.
+            resourceType: The identifier of the resource type. Resource type is one of `instance|image|object-storage`
+            resourceId: The identifier of the resource id
+
+        Returns:
+            Bool respresenting if the assignment has been succesfully assigned.
+        """
 
         resp = self._http.request(
             type="post",
