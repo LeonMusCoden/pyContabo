@@ -7,11 +7,11 @@ repo_name: xLeon-python/pyContabo
 theme:
   name: "material"
   palette:
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
+        icon: material/brightness-4
+        name: Switch to system preference
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -19,11 +19,6 @@ theme:
         icon: material/brightness-7
         name: Switch to dark mode
     # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
   icon:
     repo: fontawesome/brands/git-alt
   features:

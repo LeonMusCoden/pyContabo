@@ -25,7 +25,7 @@ print(instance.Snapshots.Audits.get()[0].rawJson)
 
 For more examples go to [Examples](examples.md)
 
-## TODO
+## Todo
 - [X] Instances, Instances Audits, Instance Actions, Instance Actions Audits, Snapshots, Snapshots Audits
 - [X] Images and Images Audits
 - [X] Tags, Tag Assignments, Tags Audits, Tag Assignments Audits

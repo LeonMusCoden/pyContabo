@@ -1,5 +1,5 @@
-::: pyContabo.Images
+::: pyContabo.Images.Images
 
 ---
 
-::: pyContabo.Image
+::: pyContabo.Image.Image
