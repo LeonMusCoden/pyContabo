@@ -447,6 +447,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pyContabo.audits.ImagesAudits.ImagesAudits" class="md-nav__link">
+    ImagesAudits
+  </a>
+  
+    <nav class="md-nav" aria-label="ImagesAudits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyContabo.audits.ImagesAudits.ImagesAudits.get" class="md-nav__link">
+    get()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -608,6 +628,26 @@
           <li class="md-nav__item">
   <a href="#pyContabo.Image.Image.update" class="md-nav__link">
     update()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyContabo.audits.ImagesAudits.ImagesAudits" class="md-nav__link">
+    ImagesAudits
+  </a>
+  
+    <nav class="md-nav" aria-label="ImagesAudits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pyContabo.audits.ImagesAudits.ImagesAudits.get" class="md-nav__link">
+    get()
   </a>
   
 </li>
@@ -1693,6 +1733,332 @@
     <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div><hr />
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pyContabo.audits.ImagesAudits.ImagesAudits" class="doc doc-heading">
+        <span class="doc doc-object-name doc-class-name">ImagesAudits</span>
+
+
+</h2>
+<div class="highlight"><pre><span></span><code><span class="n">ImagesAudits</span><span class="p">(</span><span class="n">_http</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents first">
+
+
+
+          <details class="quote">
+            <summary>Source code in <code>pyContabo/audits/ImagesAudits.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_http</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span> <span class="o">=</span> <span class="n">_http</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="pyContabo.audits.ImagesAudits.ImagesAudits.get" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">get</span>
+
+
+</h3>
+<div class="highlight"><pre><span></span><code><span class="n">get</span><span class="p">(</span>
+    <span class="n">page</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pageSize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">orderBy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">imageId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">requestId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">changedBy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">startDate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">endDate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_request_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_trace_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>fetches audits</p>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">Audits</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">[ImagesAudit]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="o">.</span><span class="n">Audits</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">imageId</span><span class="o">=</span><span class="s2">&quot;e443eab5-647a-4bc3-b4f9-16f5a281224d&quot;</span><span class="p">)</span>
+<span class="go">[ImagesAudit]</span>
+</code></pre></div>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>x_request_id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Uuid4 to identify individual requests for support cases.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>x_trace_id</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Identifier to trace group of requests.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>page</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Number of page to be fetched.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>pageSize</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Number of elements per page.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>orderBy</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Specify fields and ordering (ASC for ascending, DESC for descending) in following format <code>field:ASC|DESC</code></p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>imageId</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The identifier of the image.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>requestId</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The requestId of the API call which led to the change.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>changedBy</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>UserId of the user which led to the change.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>startDate</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>Start of search time range.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>endDate</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>End of search time range.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.List">List</span>[<span title="pyContabo.audits.Audit.ImagesAudit">ImagesAudit</span>]</code>
+          </td>
+          <td><p>List of ImagesAudit</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>pyContabo/audits/ImagesAudits.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pageSize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">orderBy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">imageId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">requestId</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">changedBy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">startDate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">endDate</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_request_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_trace_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ImagesAudit</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;fetches audits</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; image.Audits.get()</span>
+<span class="sd">        [ImagesAudit]</span>
+<span class="sd">        &gt;&gt;&gt; image.Audits.get(imageId=&quot;e443eab5-647a-4bc3-b4f9-16f5a281224d&quot;)</span>
+<span class="sd">        [ImagesAudit]</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x_request_id: Uuid4 to identify individual requests for support cases.</span>
+<span class="sd">        x_trace_id: Identifier to trace group of requests.</span>
+<span class="sd">        page: Number of page to be fetched.</span>
+<span class="sd">        pageSize: Number of elements per page.</span>
+<span class="sd">        orderBy: Specify fields and ordering (ASC for ascending, DESC for descending) in following format `field:ASC|DESC`</span>
+<span class="sd">        imageId: The identifier of the image.</span>
+<span class="sd">        requestId: The requestId of the API call which led to the change.</span>
+<span class="sd">        changedBy: UserId of the user which led to the change.</span>
+<span class="sd">        startDate: Start of search time range.</span>
+<span class="sd">        endDate: End of search time range.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of ImagesAudit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api.contabo.com/v1/images/audits?</span><span class="si">{</span><span class="sa">f</span><span class="s1">&#39;page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">page</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;size=</span><span class="si">{</span><span class="n">pageSize</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">pageSize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;orderBy=</span><span class="si">{</span><span class="n">orderBy</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">orderBy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;instanceId=</span><span class="si">{</span><span class="n">instanceId</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">instanceId</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;requestId=</span><span class="si">{</span><span class="n">requestId</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">requestId</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;imageId=</span><span class="si">{</span><span class="n">imageId</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">imageId</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;changedBy=</span><span class="si">{</span><span class="n">changedBy</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">changedBy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;startDate=</span><span class="si">{</span><span class="n">startDate</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">startDate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}{</span><span class="sa">f</span><span class="s1">&#39;endDate=</span><span class="si">{</span><span class="n">endDate</span><span class="si">}</span><span class="s1">&amp;&#39;</span> <span class="k">if</span> <span class="n">endDate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">request</span><span class="p">(</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">x_request_id</span><span class="o">=</span><span class="n">x_request_id</span><span class="p">,</span> <span class="n">x_trace_id</span><span class="o">=</span><span class="n">x_trace_id</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">audits</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">]:</span>
+            <span class="n">audits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ImagesAudit</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">audits</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
