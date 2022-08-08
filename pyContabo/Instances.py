@@ -20,14 +20,14 @@ class Instances:
 
     def get(
         self,
-        id: str=None,
-        page: int=None,
-        pageSize: int=None,
-        orderBy: str=None,
-        name: str=None,
-        region: str=None,
-        instanceIds: str=None,
-        status: str=None,
+        id: str = None,
+        page: int = None,
+        pageSize: int = None,
+        orderBy: str = None,
+        name: str = None,
+        region: str = None,
+        instanceIds: str = None,
+        status: str = None,
         x_request_id: str = None,
         x_trace_id: str = None,
     ) -> Union[Instance, List[Instance]]:
@@ -142,7 +142,7 @@ class Instances:
                 "license": licenseName.name,
                 "period": period,
                 "displayName": displayName,
-                "defaultUser": defaultUser
+                "defaultUser": defaultUser,
             },
             x_request_id=x_request_id,
             x_trace_id=x_trace_id,

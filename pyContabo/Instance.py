@@ -151,7 +151,7 @@ class Instance:
                 "sshKeys": sshKeys,
                 "rootPassword": rootPassword,
                 "userData": userData,
-                "defaultUser": defaultUser
+                "defaultUser": defaultUser,
             },
             x_request_id=x_request_id,
             x_trace_id=x_trace_id,

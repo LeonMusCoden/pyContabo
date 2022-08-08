@@ -1,1 +1,6 @@
 requests
+black
+mkdocs
+mkdocs-material
+mkdocstrings[python]
+pre-commit

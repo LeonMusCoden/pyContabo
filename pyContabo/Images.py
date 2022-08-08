@@ -126,7 +126,11 @@ class Images:
             return True
         return False
 
-    def statistics(self, x_request_id: str = None, x_trace_id: str = None,) -> bool:
+    def statistics(
+        self,
+        x_request_id: str = None,
+        x_trace_id: str = None,
+    ) -> bool:
         """List statistics regarding the customer's custom images such as the number of custom images uploaded, used disk space, free available disk space and total available disk space.
 
         Examples:

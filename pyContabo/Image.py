@@ -23,7 +23,11 @@ class Image:
         self.rawJson = json
 
     def update(
-        self, name: str, description: str, x_request_id: str = None, x_trace_id: str = None
+        self,
+        name: str,
+        description: str,
+        x_request_id: str = None,
+        x_trace_id: str = None,
     ) -> bool:
         """Update name of the custom image.
 
@@ -40,7 +44,6 @@ class Image:
         Returns:
             Bool respresenting if the image has been succesfully updated.
         """
-
 
         resp = self._http.request(
             type="patch",
