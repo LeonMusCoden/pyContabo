@@ -3,3 +3,7 @@
 ---
 
 ::: pyContabo.User.User
+
+---
+
+::: pyContabo.audits.UsersAudits.UsersAudits

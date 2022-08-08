@@ -3,3 +3,7 @@
 ---
 
 ::: pyContabo.Snapshot.Snapshot
+
+---
+
+::: pyContabo.audits.SnapshotsAudits.SnapshotsAudits

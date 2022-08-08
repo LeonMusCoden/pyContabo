@@ -3,3 +3,7 @@
 ---
 
 ::: pyContabo.Assignment.Assignment
+
+---
+
+::: pyContabo.audits.TagAssignmentsAudits.TagAssignmentsAudits
