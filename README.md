@@ -6,6 +6,8 @@ python API Client for the [Contabo API](https://api.contabo.com).
 Contabo offers web hosting with dedicated servers, colocation, and VPS hosting plans.
 Contabo API allows you to manage your resources using HTTP requests.
 
+This Client aims to make using the API easier, for example with a simple-to-understand syntax and automatic authentication.
+
 This client is unofficial.
 
 [Documentation](https://xleon-python.github.io/pyContabo/)
