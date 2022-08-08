@@ -551,6 +551,31 @@ while 1:
     print(&quot;Created Snapshot&quot;)
     sleep(86400)
 </code></pre>
+<p>Or using <a href="https://pypi.org/project/schedule/">schedule</a>:</p>
+<pre><code class="language-python">from time import sleep
+import schedule
+from pyContabo.Contabo import contabo
+
+client_id=&quot;CLIENT_ID&quot;
+client_secret=&quot;CLIENT_SECRET&quot;
+api_user=&quot;API_USER&quot;
+api_password=&quot;API_PASSWORD&quot;
+cont = contabo(client_id, client_secret, api_user, api_password)
+
+instance = cont.Instances.get()[0]
+
+def take_snapshot():
+    snapshots = instance.Snapshots.get()
+    if len(snapshots) &gt; 0: # No need to delete snapshot 0 if it doesn't exist
+        snapshots[0].delete()
+    instance.Snapshots.create(&quot;DailySnapshot&quot;, description=&quot;Created by pyContabo&quot;)
+
+schedule.every().day.at(&quot;01:00&quot;).do(take_snapshot) # runs function at 1am
+
+while True:
+    schedule.run_pending()
+    sleep(60) # wait one minute
+</code></pre>
 
               
             </article>

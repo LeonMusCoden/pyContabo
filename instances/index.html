@@ -1087,7 +1087,7 @@
             <span class="s2">&quot;license&quot;</span><span class="p">:</span> <span class="n">licenseName</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="n">period</span><span class="p">,</span>
             <span class="s2">&quot;displayName&quot;</span><span class="p">:</span> <span class="n">displayName</span><span class="p">,</span>
-            <span class="s2">&quot;defaultUser&quot;</span><span class="p">:</span> <span class="n">defaultUser</span>
+            <span class="s2">&quot;defaultUser&quot;</span><span class="p">:</span> <span class="n">defaultUser</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">x_request_id</span><span class="o">=</span><span class="n">x_request_id</span><span class="p">,</span>
         <span class="n">x_trace_id</span><span class="o">=</span><span class="n">x_trace_id</span><span class="p">,</span>
@@ -1346,14 +1346,14 @@
 <span class="normal">90</span>
 <span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">pageSize</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">orderBy</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">region</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">instanceIds</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">page</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pageSize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">orderBy</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">region</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">instanceIds</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">x_request_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">x_trace_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Instance</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Instance</span><span class="p">]]:</span>
@@ -1859,7 +1859,7 @@
             <span class="s2">&quot;sshKeys&quot;</span><span class="p">:</span> <span class="n">sshKeys</span><span class="p">,</span>
             <span class="s2">&quot;rootPassword&quot;</span><span class="p">:</span> <span class="n">rootPassword</span><span class="p">,</span>
             <span class="s2">&quot;userData&quot;</span><span class="p">:</span> <span class="n">userData</span><span class="p">,</span>
-            <span class="s2">&quot;defaultUser&quot;</span><span class="p">:</span> <span class="n">defaultUser</span>
+            <span class="s2">&quot;defaultUser&quot;</span><span class="p">:</span> <span class="n">defaultUser</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">x_request_id</span><span class="o">=</span><span class="n">x_request_id</span><span class="p">,</span>
         <span class="n">x_trace_id</span><span class="o">=</span><span class="n">x_trace_id</span><span class="p">,</span>
